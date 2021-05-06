@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
 
 const CreateIngredient = () => {
-  const dispatch = useDispatch();
   const [ingredient, setIngredient] = useState('');
 
   const handleSubmit = async (e) => {
@@ -19,6 +16,7 @@ const CreateIngredient = () => {
     if (res.ok) {
       await res.json()
     }
+    setIngredient('')
   }
 
   const updateIngredient = (e) => {

@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    # pantry = db.relationship('Pantry', back_populates='userId')
+    pantry = db.relationship('Pantry', back_populates='user')
     hashed_password = db.Column(db.String(255), nullable=False)
 
     @property

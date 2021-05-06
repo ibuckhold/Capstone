@@ -10,6 +10,7 @@ import User from "./components/User/User";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import CreateIngredient from "./components/Ingredient/add_ingredient";
+import CreatePantry from "./components/Pantry/add_pantry";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/ingredient/add' exact={true}>
           <CreateIngredient />
+        </ProtectedRoute>
+        <ProtectedRoute path='/pantry/add' exact={true}>
+          <CreatePantry />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
