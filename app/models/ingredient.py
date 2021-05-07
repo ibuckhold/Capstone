@@ -1,5 +1,17 @@
 from .db import db
 
+pantry_ingredients = db.Table(
+    'pantry_ingredients',
+    db.Column('ingredientsId', db.Integer, db.ForeignKey('ingredients.id')),
+    db.Column('pantryId', db.Integer, db.ForeignKey('pantries.id'))
+)
+
+recipe_ingredients = db.Table(
+    'recipe_ingredients',
+    db.Column('ingredientsId', db.Integer, db.ForeignKey('ingredients.id')),
+    db.Column('recipeId', db.Integer, db.ForeignKey('recipies.id'))
+)
+
 
 class Ingredient(db.Model):
     __tablename__ = 'ingredients'

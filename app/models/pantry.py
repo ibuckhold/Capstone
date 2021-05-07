@@ -8,9 +8,13 @@ class Pantry(db.Model):
     category = db.Column(db.String(50), unique=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', back_populates='pantry')
-    # ingredientId = db.relationship('Ingredient', back_populates='')
+    ingredients = db.relationship(
+        'Ingredient', backref='pantries', secondary='pantry_ingredients'
+    )
 
     def to_dict(self):
         return {
-
+            "id": self.id,
+            "category": self.category,
+            "userId": self.userId
         }
