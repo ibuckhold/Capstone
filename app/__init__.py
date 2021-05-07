@@ -13,6 +13,7 @@ from .api.add_pantry_routes import pantry_routes
 
 from .seeds import seed_commands
 
+
 from .config import Config
 
 app = Flask(__name__)
