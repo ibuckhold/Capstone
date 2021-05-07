@@ -8,6 +8,7 @@ const setIngredient = (ingredient) => ({
 
 
 //THUNKS
+
 export const addingIngredient = (name) => async (dispatch) => {
   const res = await fetch('/api/ingredients/owned', {
     method: 'POST',

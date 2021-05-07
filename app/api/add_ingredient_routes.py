@@ -16,6 +16,6 @@ def add_ingredient():
     db.session.add(new_ingredient)
     db.session.commit()
     return {
+        "id": new_ingredient.id,
         'name': new_ingredient.name,
     }
-    # return 'ERRRRRRORRRR'

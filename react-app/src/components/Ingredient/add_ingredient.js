@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const CreateIngredient = () => {
   const [ingredient, setIngredient] = useState('');
@@ -18,6 +18,13 @@ const CreateIngredient = () => {
     }
     setIngredient('')
   }
+
+  // useEffect(() => {
+  //   (async () => {
+  //     await dispatch()
+  //   })()
+  // })
+
 
   const updateIngredient = (e) => {
     setIngredient(e.target.value);
