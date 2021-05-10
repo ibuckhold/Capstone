@@ -29,3 +29,16 @@ def user_pantries():
         'username': current_user.username,
         'pantries': [pantry.to_dict() for pantry in user.pantries]
     }
+
+
+# @pantry_routes.route('/pantries')
+# @login_required
+# def user_pantries():
+#     user = User.query.filter(User.id == current_user.id).first()
+#     pantries = user.pantries
+
+#     return {
+#         'user': current_user.id,
+#         'username': current_user.username,
+#         'pantries': [pantry.to_dict() for pantry in user.pantries]
+#     }

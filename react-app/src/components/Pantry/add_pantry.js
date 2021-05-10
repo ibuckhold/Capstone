@@ -1,7 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { showPantries } from '../../store/pantry'
 
 const CreatePantry = () => {
+  const dispatch = useDispatch();
   const [pantry, setPantry] = useState('');
+  const [loaded, setLoaded] = useState(false);
+  const pantries = useSelector(state => state.pantryReducer.pantries)
+  console.log('pantries---------->', pantries)
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(showPantries())
+    })();
+  }, [dispatch])
+
+  useEffect(async () => {
+    if (!loaded) {
+      return
+    }
+    await dispatch(showPantries())
+    renderPantries();
+    setLoaded(false);
+  }, [loaded])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,13 +35,32 @@ const CreatePantry = () => {
       body: formData
     })
     if (res.ok) {
-      await res.json()
+      await res.json();
+      setLoaded(true);
     }
-    setPantry('')
+    setPantry('');
   }
 
   const updatePantry = (e) => {
     setPantry(e.target.value);
+  }
+
+  const renderPantries = () => {
+    return (
+      <div>
+        {pantries.map((pantry) => {
+          return (
+            <div>
+              {pantry.category}
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  if (!pantries) {
+    return null
   }
 
   return (
@@ -39,6 +80,9 @@ const CreatePantry = () => {
             <button type="submit">Create Pantry</button>
           </form>
         </div>
+      </div>
+      <div>
+        {renderPantries()}
       </div>
     </main>
   )

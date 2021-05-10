@@ -50,7 +50,7 @@ function App() {
         <ProtectedRoute path='/ingredient/add' exact={true}>
           <CreateIngredient />
         </ProtectedRoute>
-        <ProtectedRoute path='/pantry/add' exact={true}>
+        <ProtectedRoute path='/pantries' exact={true}>
           <CreatePantry />
         </ProtectedRoute>
       </Switch>

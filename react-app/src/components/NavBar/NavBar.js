@@ -32,7 +32,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-          <NavLink to="/pantry/add" exact={true} className="icon fas fa-door-closed" activeClassName="active">
+          <NavLink to="/pantries" exact={true} className="icon fas fa-door-closed" activeClassName="active">
             Pantry
           </NavLink>
         </div>

@@ -23,9 +23,7 @@ export const addingIngredient = (name) => async (dispatch) => {
   dispatch(setIngredient(data))
 }
 
-const initialState = {
-  ingredient: null
-}
+const initialState = {}
 
 //REDUCER 
 export default function ingredientReducer(state = initialState, action) {
