@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { showPantries } from '../../store/pantry'
-import { getIngredients } from '../../store/ingredient'
+import { showPantries } from '../../store/pantry';
+import { getIngredients } from '../../store/ingredient';
+import './pantry.css';
+
 
 export const Pantries = () => {
   const dispatch = useDispatch();
@@ -16,10 +18,10 @@ export const Pantries = () => {
   // }, [dispatch])
 
   return (
-    <div>
+    <div className='myPantries'>
       {pantries?.map((pantry, index) => (
-        <div onClick={() => setActivePantry(pantries[index])}>
-          {pantry.category} IT WORKED
+        <div className='pantryLink' onClick={() => setActivePantry(pantries[index])}>
+          {pantry.category}
         </div>
       ))}
       <Pantry pantry={activePantry} />
@@ -40,11 +42,12 @@ const Pantry = ({ pantry }) => {
   }
 
   return pantry ? (
-    <div>
-      each individual pantry
-      {pantry.category}
+    <div className='myPantries'>
+      <div className='pantryLink'>
+        {pantry.category}
+      </div>
       <div>
-        INGREDIENTS already in pantry
+        INGREDIENTS
       </div>
       <div>
         <input type='text' value={ingredientName} onChange={updateIngredient}></input>
