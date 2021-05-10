@@ -37,7 +37,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-          <NavLink to='/ingredients/add' exact={true} className="icon fas fa-carrot" activeClassName="active">
+          <NavLink to='/ingredient/add' exact={true} className="icon fas fa-carrot" activeClassName="active">
             Ingredients
           </NavLink>
         </div>

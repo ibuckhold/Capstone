@@ -1,6 +1,18 @@
 .pantryLink {
+  font-size: 1.8rem;
   text-decoration: none;
   color: orange;
   font-weight: 700;
-  padding: 15px
+  padding: .5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.myPantries {
+  margin: 1.2rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }

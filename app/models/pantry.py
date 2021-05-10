@@ -16,5 +16,6 @@ class Pantry(db.Model):
         return {
             "id": self.id,
             "category": self.category,
-            "userId": self.userId
+            "userId": self.userId,
+            "ingredients": self.ingredients
         }

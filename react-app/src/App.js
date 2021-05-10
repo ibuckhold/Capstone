@@ -6,11 +6,14 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components//User/UsersList";
-import User from "./components/User/User";
+// import User from "./components/User/User";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import CreateIngredient from "./components/Ingredient/add_ingredient";
 import CreatePantry from "./components/Pantry/add_pantry";
+import { Pantries } from './components/Pantry/pantry_container';
+import { showPantries } from './store/pantry';
+import { getIngredients } from './store/ingredient';
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -19,7 +22,9 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate())
+      await dispatch(authenticate());
+      await dispatch(showPantries());
+      await dispatch(getIngredients());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -41,9 +46,9 @@ function App() {
         <ProtectedRoute path="/users" exact={true} >
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
+        {/* <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
@@ -51,7 +56,8 @@ function App() {
           <CreateIngredient />
         </ProtectedRoute>
         <ProtectedRoute path='/pantries' exact={true}>
-          <CreatePantry />
+          <Pantries />
+          {/* <CreatePantry /> */}
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.models import db, Ingredient
+from app.models import db, Ingredient, User
 from flask_login import current_user, login_required
 from app.forms import IngredientForm
 
@@ -18,4 +18,21 @@ def add_ingredient():
     return {
         "id": new_ingredient.id,
         'name': new_ingredient.name,
+    }
+
+
+@ingredient_routes.route('')
+@login_required
+def get_all_ingredients():
+    ingredients = Ingredient.query.all()
+    return {'ingredients': [i.to_dict() for i in ingredients]}
+
+
+@ingredient_routes.route('/pantryIngredients')
+@login_required
+def pantry_ingredients():
+    user = User.query.filter(User.id == current_user.id).first()
+
+    return {
+
     }

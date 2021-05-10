@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { showPantries } from '../../store/pantry'
+import { getIngredients } from '../../store/ingredient'
+
+export const Pantries = () => {
+  const dispatch = useDispatch();
+  const [activePantry, setActivePantry] = useState(false);
+  const pantries = useSelector(state => Object.values(state.pantries.pantries));
+
+  // useEffect(() => {
+  //   (async () => {
+  //      await dispatch(showPantries())
+  //   })();
+  // }, [dispatch])
+
+  return (
+    <div>
+      {pantries?.map((pantry, index) => (
+        <div onClick={() => setActivePantry(pantries[index])}>
+          {pantry.category} IT WORKED
+        </div>
+      ))}
+      <Pantry pantry={activePantry} />
+    </div>
+  )
+}
+
+const Pantry = ({ pantry }) => {
+  const ingredients = useSelector(state => Object.values(state.ingredients));
+  const [ingredientName, setIngredientName] = useState('');
+  const [matchedIngredient, setMatchedIngredient] = useState([]);
+
+  const updateIngredient = (e) => {
+    const query = e.target.value;
+    setIngredientName(query);
+    const matches = ingredients.filter(i => i.name.includes(query));
+    setMatchedIngredient(matches);
+  }
+
+  return pantry ? (
+    <div>
+      each individual pantry
+      {pantry.category}
+      <div>
+        INGREDIENTS already in pantry
+      </div>
+      <div>
+        <input type='text' value={ingredientName} onChange={updateIngredient}></input>
+        <div>
+          {matchedIngredient.map((match) => (
+            <div>{match.name}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  ) : <div>No Active Pantry</div>
+}

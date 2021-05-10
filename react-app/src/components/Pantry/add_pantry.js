@@ -24,7 +24,7 @@ const CreatePantry = () => {
     await dispatch(showPantries())
     renderPantries();
     setLoaded(false);
-  }, [loaded])
+  }, [dispatch, loaded])
 
 
   const handleSubmit = async (e) => {
@@ -83,7 +83,7 @@ const CreatePantry = () => {
           </form>
         </div>
       </div>
-      <div>
+      <div className='myPantries'>
         {renderPantries()}
       </div>
     </main>
