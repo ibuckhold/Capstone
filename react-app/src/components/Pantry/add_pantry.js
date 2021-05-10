@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { showPantries } from '../../store/pantry'
+import { NavLink } from 'react-router-dom';
+import { showPantries } from '../../store/pantry';
+import './pantry.css';
 
 const CreatePantry = () => {
   const dispatch = useDispatch();
@@ -50,9 +52,9 @@ const CreatePantry = () => {
       <div>
         {pantries.map((pantry) => {
           return (
-            <div>
+            <NavLink className='pantryLink' to={`/pantry/${pantry.id}`}>
               {pantry.category}
-            </div>
+            </NavLink>
           )
         })}
       </div>
