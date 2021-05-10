@@ -52,7 +52,7 @@ const CreatePantry = () => {
       <div>
         {pantries.map((pantry) => {
           return (
-            <NavLink className='pantryLink' to={`/pantry/${pantry.id}`}>
+            <NavLink className='pantryLink' key={pantry.id} to={`/pantry/${pantry.id}`}>
               {pantry.category}
             </NavLink>
           )
