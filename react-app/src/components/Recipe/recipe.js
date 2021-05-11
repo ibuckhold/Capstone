@@ -10,7 +10,7 @@ export const CreateRecipe = () => {
 
   const submitRecipe = async (e) => {
     e.preventDefault();
-    await dispatch(createRecipe());
+    await dispatch(createRecipe(recipeName, instructions, estimatedTime));
   }
 
   const updateRecipe = async (e) => {

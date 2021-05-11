@@ -5,7 +5,7 @@ const setRecipe = (recipe) => ({
   payload: recipe
 })
 
-export const createRecipe = (recipeName, userId, instructions, estimatedTime) => async (dispatch) => {
+export const createRecipe = (recipeName, instructions, estimatedTime) => async (dispatch) => {
   const res = await fetch('/api/recipe', {
     method: "POST",
     headers: {
@@ -13,7 +13,6 @@ export const createRecipe = (recipeName, userId, instructions, estimatedTime) =>
     },
     body: JSON.stringify({
       recipeName,
-      userId,
       instructions,
       estimatedTime
     })
