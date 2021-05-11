@@ -10,6 +10,28 @@ export const Pantries = () => {
   const dispatch = useDispatch();
   const [activePantry, setActivePantry] = useState(false);
   const pantries = useSelector(state => Object.values(state.pantries.pantries));
+  const [pantry, setPantry] = useState('');
+  const [loaded, setLoaded] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('category', pantry);
+
+    const res = await fetch('/api/pantry', {
+      method: 'POST',
+      body: formData
+    })
+    if (res.ok) {
+      await res.json();
+      setLoaded(true);
+    }
+    setPantry('');
+  }
+
+  const updatePantry = (e) => {
+    setPantry(e.target.value);
+  }
 
   // useEffect(() => {
   //   (async () => {
@@ -18,7 +40,18 @@ export const Pantries = () => {
   // }, [dispatch])
 
   return (
-    <div>
+    <div className='pantriesPage'>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            onChange={updatePantry}
+            value={pantry}
+            placeholder={'Pantry Category'}
+          />
+          <button type="submit">Create Pantry</button>
+        </form>
+      </div>
       <div className='myPantries'>
         {pantries?.map((pantry, index) => (
           <div className='pantryLink' onClick={() => setActivePantry(pantries[index])}>
@@ -35,12 +68,19 @@ const Pantry = ({ pantry }) => {
   const ingredients = useSelector(state => Object.values(state.ingredients));
   const [ingredientName, setIngredientName] = useState('');
   const [matchedIngredient, setMatchedIngredient] = useState([]);
+  const [selectedArr, setSelectedArr] = useState([]);
 
   const updateIngredient = (e) => {
     const query = e.target.value.toUpperCase();
     setIngredientName(query);
     const matches = ingredients.filter(i => i.name.toUpperCase().includes(query));
     setMatchedIngredient(matches);
+  }
+
+  const addToSelectedPantry = (e) => {
+    const selectedIngredient = e.target.value;
+    selectedIngredient.push(selectedArr);
+
   }
 
   return pantry ? (
@@ -52,7 +92,9 @@ const Pantry = ({ pantry }) => {
         <input type='text' value={ingredientName} onChange={updateIngredient}></input>
         <div>
           {matchedIngredient.map((match) => (
-            <div>{match.name}</div>
+            <div >
+              {match.name}
+            </div>
           ))}
         </div>
       </div>

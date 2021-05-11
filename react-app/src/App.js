@@ -12,6 +12,7 @@ import { authenticate } from "./store/session";
 import CreateIngredient from "./components/Ingredient/add_ingredient";
 import CreatePantry from "./components/Pantry/add_pantry";
 import { Pantries } from './components/Pantry/pantry_container';
+import { CreateRecipe } from './components/Recipe/recipe';
 import { showPantries } from './store/pantry';
 import { getIngredients } from './store/ingredient';
 
@@ -54,6 +55,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/ingredient/add' exact={true}>
           <CreateIngredient />
+        </ProtectedRoute>
+        <ProtectedRoute path='/recipes' exact={true}>
+          <CreateRecipe />
         </ProtectedRoute>
         <ProtectedRoute path='/pantries' exact={true}>
           <Pantries />

@@ -9,7 +9,7 @@ pantry_ingredients = db.Table(
 recipe_ingredients = db.Table(
     'recipe_ingredients',
     db.Column('ingredientsId', db.Integer, db.ForeignKey('ingredients.id')),
-    db.Column('recipeId', db.Integer, db.ForeignKey('recipies.id'))
+    db.Column('recipeId', db.Integer, db.ForeignKey('.id'))
 )
 
 

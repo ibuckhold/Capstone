@@ -8,6 +8,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  cursor: pointer;
 }
 
 .myPantries {
@@ -15,6 +16,7 @@
   display:flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .selectorArea {
@@ -22,6 +24,7 @@
   margin: auto;
   width: 50%;
   align-items: center;
+  cursor: pointer;
 }
 
 .chosenPantry {
@@ -29,4 +32,9 @@
   text-decoration: none;
   color: orange;
   font-weight: 600;
+}
+
+.pantriesPage {
+  display: grid;
+  
 }

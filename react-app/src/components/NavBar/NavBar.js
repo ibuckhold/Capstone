@@ -42,7 +42,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-          <NavLink to='recipe/create' exact={true} className="icon fas fa-scroll" activeClassName="active">
+          <NavLink to='recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">
             Recipe
           </NavLink>
         </div>

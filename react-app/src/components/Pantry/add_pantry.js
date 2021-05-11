@@ -8,8 +8,8 @@ const CreatePantry = () => {
   const dispatch = useDispatch();
   const [pantry, setPantry] = useState('');
   const [loaded, setLoaded] = useState(false);
-  const pantries = useSelector(state => state.pantryReducer.pantries)
-  console.log('pantries---------->', pantries)
+  const pantries = useSelector(state => state?.pantryReducer?.pantries)
+  // console.log('pantries---------->', pantries)
 
   useEffect(() => {
     (async () => {
@@ -25,7 +25,6 @@ const CreatePantry = () => {
     renderPantries();
     setLoaded(false);
   }, [dispatch, loaded])
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -2,7 +2,7 @@ from .db import db
 
 
 class Recipe(db.Model):
-    __tablename__ = 'recipies'
+    __tablename__ = 'recipes'
 
     id = db.Column(db.Integer, primary_key=True)
     recipeName = db.Column(db.String(50), unique=True, nullable=False)
@@ -10,7 +10,7 @@ class Recipe(db.Model):
     instructions = db.Column(db.Text, nullable=False)
     estimatedTime = db.Column(db.String(50), nullable=False)
     ingredients = db.relationship(
-        'Ingredient', backref='recipies', secondary='recipe_ingredients'
+        'Ingredient', backref='recipes', secondary='recipe_ingredients'
     )
 
     def to_dict(self):
