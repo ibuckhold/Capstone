@@ -19,7 +19,7 @@ def add_pantry():
 
 
 @pantry_routes.route('/ingredients')
-@login_required
+# @login_required
 def user_pantries():
     user = User.query.filter(User.id == current_user.id).first()
     pantries = user.pantries

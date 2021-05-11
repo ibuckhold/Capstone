@@ -22,14 +22,14 @@ def add_ingredient():
 
 
 @ingredient_routes.route('')
-@login_required
+# @login_required
 def get_all_ingredients():
     ingredients = Ingredient.query.all()
     return {'ingredients': [i.to_dict() for i in ingredients]}
 
 
 @ingredient_routes.route('/pantryIngredients')
-@login_required
+# @login_required
 def pantry_ingredients():
     user = User.query.filter(User.id == current_user.id).first()
 
