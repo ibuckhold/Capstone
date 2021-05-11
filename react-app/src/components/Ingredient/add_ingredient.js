@@ -9,7 +9,7 @@ const CreateIngredient = () => {
     const formData = new FormData();
     formData.append('name', ingredient);
 
-    const res = await fetch('/api/ingredient', {
+    const res = await fetch('/api/ingredients/add', {
       method: 'POST',
       body: formData,
     });

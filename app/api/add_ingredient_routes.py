@@ -7,7 +7,7 @@ from app.forms import IngredientForm
 ingredient_routes = Blueprint("owned", __name__)
 
 
-@ingredient_routes.route('', methods=['POST'])
+@ingredient_routes.route('/add', methods=['POST'])
 @login_required
 def add_ingredient():
     form = IngredientForm()
