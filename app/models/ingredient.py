@@ -24,3 +24,6 @@ class Ingredient(db.Model):
             "id": self.id,
             "name": self.name
         }
+
+
+# index_name = db.Index('index_name', Ingredient.name)

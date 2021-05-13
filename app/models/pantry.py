@@ -17,5 +17,5 @@ class Pantry(db.Model):
             "id": self.id,
             "category": self.category,
             "userId": self.userId,
-            "ingredients": self.ingredients
+            "ingredients": [i.to_dict() for i in self.ingredients]
         }

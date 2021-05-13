@@ -34,15 +34,17 @@ export const addingIngredient = (name) => async (dispatch) => {
   });
   const data = await res.json();
   dispatch(setIngredient(data))
+  return data;
 }
 
 const initialState = {}
 
 //REDUCER 
 export default function ingredientReducer(state = initialState, action) {
+  const previousState = { ...state };
   switch (action.type) {
     case SET_INGREDIENT:
-      return { ingredient: action.payload };
+      return { ...previousState, [action.payload.id]: action.payload };
     case GET_ALL_INGREDIENTS:
       return { ...action.payload };
     default:

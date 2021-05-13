@@ -11,6 +11,9 @@ export const CreateRecipe = () => {
   const submitRecipe = async (e) => {
     e.preventDefault();
     await dispatch(createRecipe(recipeName, instructions, estimatedTime));
+    setRecipeName('');
+    setInstructions('');
+    setEstimatedTime('');
   }
 
   const updateRecipe = async (e) => {
