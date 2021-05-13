@@ -24,7 +24,8 @@ export const showPantries = () => async (dispatch) => {
 }
 
 export const updatePantry = (pantryId, ingredients) => async (dispatch) => {
-  const ingredientsToSend = [...ingredients].join('--**--')
+  const ingredientsToSend = await [...ingredients].join('--**--')
+  console.log('-----()', ingredientsToSend)
   const res = await fetch(`/api/pantry/${pantryId}`, {
     method: "POST",
     headers: {
@@ -35,6 +36,7 @@ export const updatePantry = (pantryId, ingredients) => async (dispatch) => {
     }
   })
   const data = await res.json();
+  console.log('-----()', data);
   if (res.ok) {
     await dispatch(addToPantry(data));
   }
@@ -46,7 +48,7 @@ export default function pantryReducer(state = initialState, action) {
   const prevState = { ...state }
   switch (action.type) {
     case GET_PANTRIES:
-      const newState = { ...action.payload };
+      const newState = { ...state, ...action.payload };
       return newState;
     case ADD_TO_PANTRY:
       newState = { ...action.payload };

@@ -10,11 +10,11 @@ import UsersList from "./components//User/UsersList";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import CreateIngredient from "./components/Ingredient/add_ingredient";
-import CreatePantry from "./components/Pantry/add_pantry";
+// import CreatePantry from "./components/Pantry/add_pantry";
 import { CreateRecipe } from "./components/Recipe/recipe"
 import { Pantries } from './components/Pantry/pantry_container';
-import { showPantries } from './store/pantry';
-import { getIngredients } from './store/ingredient';
+// import { showPantries } from './store/pantry';
+// import { getIngredients } from './store/ingredient';
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -24,8 +24,8 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      await dispatch(showPantries());
-      await dispatch(getIngredients());
+      // await dispatch(showPantries());
+      // await dispatch(getIngredients());
       setLoaded(true);
     })();
   }, [dispatch]);

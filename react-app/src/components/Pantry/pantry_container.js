@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 // import { NavLink } from 'react-router-dom';
-// import { showPantries } from '../../store/pantry';
+import { showPantries } from '../../store/pantry';
 // import { getIngredients } from '../../store/ingredient';
-import { addingIngredient } from '../../store/ingredient';
+import { addingIngredient, getIngredients } from '../../store/ingredient';
 import { updatePantry } from '../../store/pantry';
 import './pantry.css';
 
@@ -11,38 +11,44 @@ import './pantry.css';
 export const Pantries = () => {
   const dispatch = useDispatch();
   const [activePantry, setActivePantry] = useState(false);
-  const pantries = useSelector(state => Object.values(state.pantries.pantries));
+  const [pantry, setPantry] = useState('');
+  const [loaded, setLoaded] = useState(false);
+  const pantriesArr = useSelector(state => Object.values(state.pantries));
+  const pantries = pantriesArr.map((pantry) => {
+    return pantry
+  })
 
-  // useEffect(() => {
-  //   (async () => {
-  //      await dispatch(showPantries())
-  //   })();
-  // }, [dispatch])
+  useEffect(() => {
+    (async () => {
+      await dispatch(showPantries())
+      await dispatch(getIngredients())
+    })();
+  }, [dispatch])
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append('category', pantry);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('category', pantry);
 
-  //   const res = await fetch('/api/pantry', {
-  //     method: 'POST',
-  //     body: formData
-  //   })
-  //   if (res.ok) {
-  //     await res.json();
-  //     setLoaded(true);
-  //   }
-  //   setPantry('');
-  // }
+    const res = await fetch('/api/pantry', {
+      method: 'POST',
+      body: formData
+    })
+    if (res.ok) {
+      await res.json();
+      setLoaded(true);
+    }
+    setPantry('');
+  }
 
-  // const updatePantry = (e) => {
-  //   setPantry(e.target.value);
-  // }
+  const updatePantry = (e) => {
+    setPantry(e.target.value);
+  }
 
   return (
     <div>
       <div>
-        {/* <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type='text'
             onChange={updatePantry}
@@ -50,11 +56,11 @@ export const Pantries = () => {
             placeholder={'Pantry Category'}
           />
           <button type="submit">Create Pantry</button>
-        </form> */}
+        </form>
       </div>
       <div className='myPantries'>
-        {pantries?.map((pantry, index) => (
-          <div className='pantryLink' onClick={() => setActivePantry(pantries[index])}>
+        {pantries[0]?.map((pantry, index) => (
+          <div className='pantryLink' onClick={() => setActivePantry(pantries[0][index])}>
             {pantry.category}
           </div>
         ))}
@@ -80,18 +86,21 @@ const Pantry = ({ pantry }) => {
 
   const addIngredient = (e) => {
     e.preventDefault();
-    setCart([...cart, e.target.value])
+    setCart([...cart, e.target.textContent]);
+    console.log('cart', cart);
   }
 
   const createIngredient = (e) => {
     e.preventDefault();
-    dispatch(addingIngredient(e.target.value));
-    setCart([...cart, e.target.value])
+    dispatch(addingIngredient(e.target.textContent));
+    setCart([...cart, e.target.textContent]);
+    console.log('addingcart', cart);
   }
 
   const addIngredientToPantry = (e) => {
     e.preventDefault();
-    dispatch(updatePantry(pantry.id, cart))
+    dispatch(updatePantry(pantry.id, cart));
+    console.log('endcart', cart);
   }
 
   return pantry ? (
@@ -116,8 +125,8 @@ const Pantry = ({ pantry }) => {
       </div>
       <div className='cartIngredients'>
         <h1>Cart</h1>
-        {cart.map((item) => (
-          <div>{item.name}</div>
+        {cart?.map((item) => (
+          <div>{item}</div>
         ))}
       </div>
     </div>
