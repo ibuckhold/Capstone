@@ -37,7 +37,6 @@ def user_pantries():
 @pantry_routes.route('/<int:pantryId>', methods=['POST'])
 # @login_required
 def add_ingredients_to_pantry(pantryId):
-
     # user = User.query.filter(User.id == current_user.id).first()
     # parsed_data = json.loads(ingredients_form)
     # print('4==================================>', parsed_data)
@@ -50,11 +49,6 @@ def add_ingredients_to_pantry(pantryId):
 
     # db.session.add(newDrink)
     # db.session.commit()
-    # for ingredient in ingredients:
-    #     db.session.execute(f"""insert into drink_ingredients ("drinkId", "ingredientId")
-    #     values ({newDrink.id}, {ingredient.id});""")
-    #   db.session.commit()
-    #   return newDrink.to_dict()
     # print(ingredients)
     form = IngredientsIntoPantryForm()
     ingredients_form = form.data['ingredients']
