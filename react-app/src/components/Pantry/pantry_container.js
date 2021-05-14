@@ -99,8 +99,13 @@ const Pantry = ({ pantry }) => {
 
   const addIngredientToPantry = (e) => {
     e.preventDefault();
-    dispatch(updatePantry(pantry.id, cart));
-    console.log('endcart', cart);
+    const formData = new FormData();
+    formData.append('ingredients', cart)
+    formData.append('pantryId', pantry.id)
+    dispatch(updatePantry(pantry.id, formData))
+    // dispatch(updatePantry(pantry.id, cart));
+    // console.log('endcart', cart);
+    console.log('endcart', formData);
   }
 
   return pantry ? (

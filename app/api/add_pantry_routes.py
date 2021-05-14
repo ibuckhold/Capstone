@@ -37,26 +37,46 @@ def user_pantries():
 @pantry_routes.route('/<int:pantryId>', methods=['POST'])
 # @login_required
 def add_ingredients_to_pantry(pantryId):
+
     # user = User.query.filter(User.id == current_user.id).first()
     # parsed_data = json.loads(ingredients_form)
     # print('4==================================>', parsed_data)
     # # run this bad boy and lets seee...
-    # ingredients = ingredients_form.split('--*--')
-    # ingredients = json.loads(form.data['ingredients'])
     # print('2-------------------------->', ingredients)
+    # ingredients.append(Ingredient.query.get(ingredient))
+
+    # newDrink = Drink(authorId=newAuthorId, name=newName, isAlcoholic=newIsAlcoholic,
+    #                  instructions=newInstructions, photo_url=newPhoto_url)
+
+    # db.session.add(newDrink)
+    # db.session.commit()
+    # for ingredient in ingredients:
+    #     db.session.execute(f"""insert into drink_ingredients ("drinkId", "ingredientId")
+    #     values ({newDrink.id}, {ingredient.id});""")
+    #   db.session.commit()
+    #   return newDrink.to_dict()
+    # print(ingredients)
     form = IngredientsIntoPantryForm()
     ingredients_form = form.data['ingredients']
-    # print('========literal_eval', literal_eval(ingredients_form))
-    ingredients = literal_eval(ingredients_form)
-    print('===========>', ingredients)
-    eachIngredient = Ingredient.query.filter(
-        Ingredient.name.in_(ingredients))
-    print('llll', eachIngredient)
+    print('========form', ingredients_form)
     pantry = Pantry.query.filter(pantryId == Pantry.id).first()
-    print('pantry', pantry)
-    for i in eachIngredient:
-        pantry.ingredients.append(i)
-        print('000000', pantry, i)
+    # ingredients = ingredients_form.split('--*--')
+    ingredientsString = request.form['ingredients']
+    # ingredients = literal_eval(ingredients_form)
+    # ingredients = json.loads(form.data['ingredients'])
+    ingredients = ingredientsString.split(',')
+    print('===========>ingredddds', ingredients)
+    for eachIngredient in ingredients:
+        print('-----splittingArray--', eachIngredient)
+        ingred = Ingredient.query.filter_by(name=eachIngredient).first()
+        db.session.execute(f"""insert into pantry_ingredients ("ingredientsId", "pantryId")
+        values ({ingred.id}, {pantry.id});""")
+        # filteredIng = Ingredient.query.filter_by(name=eachIngredient)
+        # print('llll----00000FILTERING', filteredIng)
+        # pantry.ingredients.append(filteredIng)
+        # db.session.add()
+    # for i in eachIngredient:
+    #     print('000000', pantry, i)
     db.session.commit()
     return {
         "pantry": pantry.to_dict()
