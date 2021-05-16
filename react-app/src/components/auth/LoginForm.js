@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/session";
+import './login.css'
 
 
 const LoginForm = () => {
@@ -28,38 +29,48 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
+
+    <main>
+      <div className="login">
+        <div className="contain">
+          <form onSubmit={onLogin}>
+            <div>
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                name="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}
+              />
+              <button type="submit">Login</button>
+            </div>
+          </form>
+          <div className="not">
+            <p>Not a Pantry Note member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    </main>
   );
 };
 
