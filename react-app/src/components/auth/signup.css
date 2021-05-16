@@ -1,6 +1,6 @@
 *{
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   box-sizing: border-box;
 }
 
@@ -26,6 +26,10 @@ main{
 /* header style */
 .page .header{
   text-align: center;
+}
+
+.formStuff {
+  margin: 1rem;
 }
 
 .page .header .logo,
@@ -115,8 +119,9 @@ main{
 
 /* option style */
 .option p > a{
-    text-decoration: none;
-    color: #FCDA4B;
+  text-decoration: none;
+  color: #FCDA4B;
+  font-weight: 600;
 }
 
 /* footer style */

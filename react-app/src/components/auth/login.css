@@ -16,12 +16,16 @@ main{
 }
 
 .login{
-  margin-top: 8rem;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 30px;
   color: whitesmoke;
+}
+
+.formStuff {
+  margin: 1rem;
 }
 
 /* head style */
@@ -125,6 +129,7 @@ main{
 .not p > a{
     text-decoration: none;
     color: #FCDA4B;
+    font-weight: 600;
 }
 
 /* footer style */

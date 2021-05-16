@@ -44,26 +44,24 @@ const LoginForm = () => {
               ))}
             </div>
             <div>
-              <label htmlFor="email">Email</label>
+              <label className='formStuff' htmlFor="email">Email</label>
               <input
                 name="email"
                 type="text"
-                placeholder="Email"
                 value={email}
                 onChange={updateEmail}
               />
             </div>
             <div>
-              <label htmlFor="password">Password</label>
+              <label className='formStuff' htmlFor="password">Password</label>
               <input
                 name="password"
                 type="password"
-                placeholder="Password"
                 value={password}
                 onChange={updatePassword}
               />
-              <button type="submit">Login</button>
             </div>
+            <button type="submit">Login</button>
           </form>
           <div className="not">
             <p>Not a Pantry Note member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
