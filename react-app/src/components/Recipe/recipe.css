@@ -1,9 +1,46 @@
 .recipeForm {
   margin-top: 2rem;
+  margin-left: 2rem;
   display: flex;
   justify-content: flex-end;
-  /* align-items: flex-end; */
+  align-items: center;
   flex-direction: column;
-  background-color: #F6BA9E;
+  border: 6px solid #763343;
+  background-color: #9CA8B6; 
   max-width: 20rem;
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+.feed {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.eachRecipe {
+  background-color: #763343;
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: 10px;
+}
+
+.recName {
+  color: whitesmoke;
+  font-weight: 700;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.estTime {
+  color: whitesmoke;
+  font-weight: 100;
+}
+
+.heading {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.title {
+  color: #E2C275;
 }

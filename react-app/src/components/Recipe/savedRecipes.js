@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyRecipes } from '../../store/recipe';
+import './recipe.css';
 
 export const SavedRecipes = () => {
   const dispatch = useDispatch();
@@ -14,10 +15,16 @@ export const SavedRecipes = () => {
 
   return (
     <div>
-      <div>
+      <div className="heading">
+        <h1 className="title">Your Saved Recipes</h1>
+      </div>
+      <div className='feed'>
         <div>
           {myRecipes?.map((recipe) => (
-            <div key={recipe.id}>{recipe.recipeName}</div>
+            <div className='eachRecipe' key={recipe.id}>
+              <div className='recName'>{recipe.recipeName}</div>
+              <div className='estTime'>{recipe.estimatedTime}</div>
+            </div>
           ))}
         </div>
       </div>

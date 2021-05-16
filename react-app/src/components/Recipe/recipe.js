@@ -48,15 +48,6 @@ export const CreateRecipe = () => {
             ></input>
           </div>
           <div>
-            <label>Instructions</label>
-            <input
-              type="text"
-              name="instructions"
-              onChange={updateInstructions}
-              value={instructions}
-            ></input>
-          </div>
-          <div>
             <label>Estimated Time</label>
             <input
               type="text"
@@ -65,13 +56,25 @@ export const CreateRecipe = () => {
               value={estimatedTime}
             ></input>
           </div>
+          <div>
+            <label>Instructions</label>
+            <textarea
+              type="text"
+              name="instructions"
+              onChange={updateInstructions}
+              value={instructions}
+            ></textarea>
+          </div>
           <button type="submit">Create Recipe</button>
         </form>
       </div>
-      <div>
+      <div className='feed'>
         <div>
           {recipes?.map((recipe) => (
-            <div key={recipe.id}>{recipe.recipeName}</div>
+            <div className='eachRecipe' key={recipe.id}>
+              <div className='recName'>{recipe.recipeName}</div>
+              <div className='estTime'>{recipe.estimatedTime}</div>
+            </div>
           ))}
         </div>
       </div>
