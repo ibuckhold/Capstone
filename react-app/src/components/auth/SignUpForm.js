@@ -83,16 +83,10 @@ const SignUpForm = () => {
             </div>
             <button type="submit">Sign Up</button>
           </form>
-          <ul>
-            <li>By signing up, you agree to our Terms, Data Policy and Cookies Policy</li>
-          </ul>
         </div>
       </div>
       <div className="option">
         <p>Have an account? <NavLink to='/login'>Log in</NavLink></p>
-      </div>
-      <div className="footer">
-        <p>© 2021 Pantry Note</p>
       </div>
     </main>
   );

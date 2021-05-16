@@ -12,6 +12,8 @@ main{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 8rem;
+  color: whitesmoke;
 }
 
 .page{
@@ -34,7 +36,7 @@ main{
 
 .page .header > p{
   font-weight: bold;
-  color: #8e8e8e;
+  color: whitesmoke;
   font-size: 18px;
 }
 
@@ -43,7 +45,7 @@ main{
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
-  background-color: #0095f6;
+  background-color: #FCDA4B;
   color: #ffffff;
 }
 
@@ -90,7 +92,7 @@ main{
   padding: 7px 20px;
   border-radius: 5px;
   border: none;
-  background-color: #0095f6;
+  background-color: #FCDA4B;
   color: #ffffff;
 }
 
@@ -114,7 +116,7 @@ main{
 /* option style */
 .option p > a{
     text-decoration: none;
-    color: #00a0f7;
+    color: #FCDA4B;
 }
 
 /* footer style */
@@ -134,13 +136,13 @@ main{
 .footer ul li a{
   text-decoration: none;
   font-size: 12px;
-  color: #00376b;
+  color: #FCDA4B;
 }
 
 .footer p{
   margin: 10px 0;
   text-align: center;
-  color: #8e9096;
+  color: #FCDA4B;
   font-size: 14px;
 }
 
