@@ -18,6 +18,7 @@ export const Pantries = () => {
     return pantry
   })
 
+
   useEffect(() => {
     (async () => {
       await dispatch(showPantries())
@@ -60,7 +61,7 @@ export const Pantries = () => {
       </div>
       <div className='myPantries'>
         {pantries[0]?.map((pantry, index) => (
-          <div className='pantryLink' onClick={() => setActivePantry(pantries[0][index])}>
+          <div key={pantry.id} className='pantryLink' onClick={() => setActivePantry(pantries[0][index])}>
             {pantry.category}
           </div>
         ))}

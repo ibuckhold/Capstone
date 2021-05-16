@@ -27,7 +27,7 @@ const NavBar = () => {
     <nav>
       <ul className="nav">
         <div>
-          <NavLink to="/" exact={true} className="icon fas fa-home" activeClassName="active">
+          <NavLink to="/home" exact={true} className="icon fas fa-home" activeClassName="active">
             Home
           </NavLink>
         </div>

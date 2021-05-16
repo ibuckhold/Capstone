@@ -13,6 +13,7 @@ import CreateIngredient from "./components/Ingredient/add_ingredient";
 // import CreatePantry from "./components/Pantry/add_pantry";
 import { CreateRecipe } from "./components/Recipe/recipe"
 import { Pantries } from './components/Pantry/pantry_container';
+import { SavedRecipes } from './components/Recipe/savedRecipes';
 // import { showPantries } from './store/pantry';
 // import { getIngredients } from './store/ingredient';
 
@@ -56,12 +57,15 @@ function App() {
         <ProtectedRoute path='/ingredient/add' exact={true}>
           <CreateIngredient />
         </ProtectedRoute>
-        <ProtectedRoute path='/recipes' exact={true}>
+        <ProtectedRoute path='/home' exact={true}>
           <CreateRecipe />
         </ProtectedRoute>
         <ProtectedRoute path='/pantries' exact={true}>
           <Pantries />
           {/* <CreatePantry /> */}
+        </ProtectedRoute>
+        <ProtectedRoute path='/recipes' exact={true}>
+          <SavedRecipes />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

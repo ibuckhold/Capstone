@@ -52,7 +52,7 @@ export const updatePantry = (pantryId, formData) => async (dispatch) => {
 const initialState = {};
 
 export default function pantryReducer(state = initialState, action) {
-  const prevState = { ...state }
+  // const prevState = { ...state }
   switch (action.type) {
     case GET_PANTRIES:
       const newState = { ...state, ...action.payload };

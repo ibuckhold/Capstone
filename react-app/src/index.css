@@ -1,1 +1,10 @@
 /* TODO Add site wide styles */
+body {
+  background-image: url("../src/images/background.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 48rem;
+  /* height: 100%; */
+  /* width: 100%; */
+}

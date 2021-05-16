@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session';
 import ingredients from './ingredient';
 import pantries from './pantry';
+import recipes from './recipe';
 
 
 const rootReducer = combineReducers({
     session,
     ingredients,
-    pantries
+    pantries,
+    recipes
 });
 
 let enhancer;

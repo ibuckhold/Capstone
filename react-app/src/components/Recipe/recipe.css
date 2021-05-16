@@ -1,0 +1,9 @@
+.recipeForm {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  /* align-items: flex-end; */
+  flex-direction: column;
+  background-color: #F6BA9E;
+  max-width: 20rem;
+}
