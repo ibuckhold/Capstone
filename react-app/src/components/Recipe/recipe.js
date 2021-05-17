@@ -28,11 +28,11 @@ export const CreateRecipe = () => {
     setEstimatedTime(e.target.value);
   }
 
-  // useEffect(() => {
-  //   (async () => {
-  //     await dispatch(getAllRecipes(recipes))
-  //   })();
-  // }, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(getAllRecipes())
+    })();
+  }, [dispatch]);
 
   return (
     <div>
