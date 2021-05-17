@@ -5,21 +5,21 @@ import './recipe.css';
 
 export const CreateRecipe = () => {
   const dispatch = useDispatch();
-  const [recipeName, setRecipeName] = useState('');
+  const [recipeUsername, setRecipeUsername] = useState('');
   const [instructions, setInstructions] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
   const recipes = useSelector(state => state.recipes.recipes?.reverse());
 
   const submitRecipe = async (e) => {
     e.preventDefault();
-    await dispatch(createRecipe(recipeName, instructions, estimatedTime));
-    setRecipeName('');
+    await dispatch(createRecipe(recipeUsername, instructions, estimatedTime));
+    setRecipeUsername('');
     setInstructions('');
     setEstimatedTime('');
   }
 
   const updateRecipe = async (e) => {
-    setRecipeName(e.target.value);
+    setRecipeUsername(e.target.value);
   }
   const updateInstructions = async (e) => {
     setInstructions(e.target.value);
@@ -44,7 +44,7 @@ export const CreateRecipe = () => {
               type="text"
               name="recipeName"
               onChange={updateRecipe}
-              value={recipeName}
+              value={recipeUsername}
             ></input>
           </div>
           <div>
