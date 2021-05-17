@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { showPantries } from '../../store/pantry';
 // import { getIngredients } from '../../store/ingredient';
 import { addingIngredient, getIngredients } from '../../store/ingredient';
@@ -49,14 +49,15 @@ export const Pantries = () => {
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form className='createPantry' onSubmit={handleSubmit}>
           <input
+            className='input'
             type='text'
             onChange={updatePantry}
             value={pantry}
             placeholder={'Pantry Category'}
           />
-          <button type="submit">Create Pantry</button>
+          <button className='input' type="submit">Create Pantry</button>
         </form>
       </div>
       <div className='myPantries'>
@@ -85,11 +86,11 @@ const Pantry = ({ pantry }) => {
     setMatchedIngredient(matches);
   }
 
-  const ingredientMaker = (e) => {
-    const input = e.target.value;
-    setIngredientName(input);
-    addIngredient(input)
-  }
+  // const ingredientMaker = (e) => {
+  //   const input = e.target.value;
+  //   setIngredientName(input);
+  //   addIngredient(input)
+  // }
 
   const addIngredient = (e) => {
     e.preventDefault();
@@ -97,12 +98,12 @@ const Pantry = ({ pantry }) => {
     console.log('cart', cart);
   }
 
-  const createIngredient = (e) => {
-    e.preventDefault();
-    dispatch(addingIngredient(e.target.textContent));
-    setCart([...cart, e.target.textContent]);
-    console.log('addingcart', cart);
-  }
+  // const createIngredient = (e) => {
+  //   e.preventDefault();
+  //   dispatch(addingIngredient(e.target.textContent));
+  //   setCart([...cart, e.target.textContent]);
+  //   console.log('addingcart', cart);
+  // }
 
   const addIngredientToPantry = (e) => {
     e.preventDefault();
@@ -117,31 +118,27 @@ const Pantry = ({ pantry }) => {
 
   return pantry ? (
     <div>
+      <NavLink className='navlink' to='/ingredient/add'>Create An Ingredient</NavLink>
       <div className='selectorArea'>
-        <div className='chosenPantries'>
-          Ingredients in {pantry.category}
-        </div>
-        <form onSubmit={createIngredient}>
-          <input type='text'
-            value={ingredientName}
-            onChange={ingredientMaker}
-          ></input>
-          <button type="submit">Create An Ingredient</button>
-        </form>
-        <form onSubmit={addIngredientToPantry}>
-          <input
-            type='text'
-            value={ingredientName}
-            onChange={updateIngredient}
-          ></input>
-          <div>
-            {matchedIngredient.map((match) => (
-              //button next to div 
-              <div onClick={addIngredient}>{match.name}</div>
-            ))}
+        <div className='pantryArea'>
+          <div className='chosenPantries'>
+            Ingredients in {pantry.category}
           </div>
-          <button type="submit" >Update Pantry</button>
-        </form>
+          <form onSubmit={addIngredientToPantry}>
+            <input
+              type='text'
+              value={ingredientName}
+              onChange={updateIngredient}
+            ></input>
+            <div>
+              {matchedIngredient.map((match) => (
+                //button next to div 
+                <select onClick={addIngredient}>{match.name}</select>
+              ))}
+            </div>
+            <button type="submit" >Update Pantry</button>
+          </form>
+        </div>
       </div>
       <div className='cartIngredients'>
         <h1>Cart</h1>
