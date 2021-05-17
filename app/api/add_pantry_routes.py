@@ -39,11 +39,17 @@ def user_pantries():
 def user_pantry_ingredients():
     user = User.query.filter(User.id == current_user.id).first()
     pantries = user.pantries
-    for pantry in pantries:
-        for ingredient in pantry.ingredients:
-            return {
-                'name': ingredient.name
-            }
+    print('-----pantries', pantries)
+    # return [pantry.to_dict() for pantry in pantries]
+    return {
+        "pantry_ing": [pantry.to_dict() for pantry in pantries]
+    }
+    # for pantry in pantries:
+    #     # return (ingredients.to_dict() for ingredients in pantry.ingredients)
+    #     for ingredient in pantry.ingredients:
+    #         return {
+    #             'pantry_ingredients': ingredient.to_dict(),
+    #         }
 
 
 @pantry_routes.route('/<int:pantryId>', methods=['POST'])

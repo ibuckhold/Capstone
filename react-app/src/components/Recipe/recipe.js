@@ -30,7 +30,7 @@ export const CreateRecipe = () => {
 
   useEffect(() => {
     (async () => {
-      await dispatch(getAllRecipes())
+      await dispatch(getAllRecipes(recipes))
     })();
   }, [dispatch]);
 
