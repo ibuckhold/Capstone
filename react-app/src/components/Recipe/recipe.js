@@ -70,6 +70,7 @@ export const CreateRecipe = () => {
       </div>
       <div className='feed'>
         <div>
+          <h1 className='head'>Recipe Feed</h1>
           {recipes?.map((recipe) => (
             <div className='eachRecipe' key={recipe.id}>
               <div className='recName'>{recipe.recipeName}</div>

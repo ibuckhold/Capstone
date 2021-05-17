@@ -34,6 +34,18 @@ def user_pantries():
     }
 
 
+@pantry_routes.route('/pantryIngredients')
+# @login_required
+def user_pantry_ingredients():
+    user = User.query.filter(User.id == current_user.id).first()
+    pantries = user.pantries
+    for pantry in pantries:
+        for ingredient in pantry.ingredients:
+            return {
+                'name': ingredient.name
+            }
+
+
 @pantry_routes.route('/<int:pantryId>', methods=['POST'])
 # @login_required
 def add_ingredients_to_pantry(pantryId):

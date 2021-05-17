@@ -1,5 +1,6 @@
 const GET_PANTRIES = 'GET_PANTRIES';
 const ADD_TO_PANTRY = "ADD_TO_PANTRY";
+const GET_PANTRY_ING = "GET_PANTRY_ING"
 
 const getPantries = (pantries) => ({
   type: GET_PANTRIES,
@@ -8,6 +9,11 @@ const getPantries = (pantries) => ({
 
 const addToPantry = (ingredients) => ({
   type: ADD_TO_PANTRY,
+  payload: ingredients
+})
+
+const getIngredients = (ingredients) => ({
+  type: GET_PANTRY_ING,
   payload: ingredients
 })
 
@@ -20,6 +26,14 @@ export const showPantries = () => async (dispatch) => {
   } else {
     console.log('response', data);
     throw res;
+  }
+}
+
+export const getPantryIngredients = () => async (dispatch) => {
+  const res = await fetch('/api/pantry/pantryIngredients');
+  const data = await res.json();
+  if (res.ok) {
+    await dispatch(getIngredients(data));
   }
 }
 
@@ -58,6 +72,8 @@ export default function pantryReducer(state = initialState, action) {
       const newState = { ...state, ...action.payload };
       return newState;
     case ADD_TO_PANTRY:
+      return { ...state, ...action.payload };
+    case GET_PANTRY_ING:
       return { ...state, ...action.payload };
     default:
       return state

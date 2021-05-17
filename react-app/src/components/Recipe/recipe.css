@@ -41,6 +41,12 @@
   display: flex;
   justify-content: center;
 }
+
 .title {
-  color: #E2C275;
+  color: #EC9D3D;
+}
+
+.head {
+  margin-left: 3rem;
+  color: #EC9D3D;
 }
