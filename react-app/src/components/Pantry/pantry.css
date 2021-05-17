@@ -18,10 +18,13 @@
 }
 
 .selectorArea {
+  display: flex;
+  flex-direction: column;
   border: 5px solid blue;
   margin: auto;
   width: 50%;
   align-items: center;
+  justify-content: center;
 }
 
 .chosenPantry {

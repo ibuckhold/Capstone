@@ -85,6 +85,12 @@ const Pantry = ({ pantry }) => {
     setMatchedIngredient(matches);
   }
 
+  const ingredientMaker = (e) => {
+    const input = e.target.value;
+    setIngredientName(input);
+    addIngredient(input)
+  }
+
   const addIngredient = (e) => {
     e.preventDefault();
     setCart([...cart, e.target.textContent]);
@@ -115,16 +121,24 @@ const Pantry = ({ pantry }) => {
         <div className='chosenPantries'>
           Ingredients in {pantry.category}
         </div>
+        <form onSubmit={createIngredient}>
+          <input type='text'
+            value={ingredientName}
+            onChange={ingredientMaker}
+          ></input>
+          <button type="submit">Create An Ingredient</button>
+        </form>
         <form onSubmit={addIngredientToPantry}>
-          <input type='text' value={ingredientName} onChange={updateIngredient}></input>
+          <input
+            type='text'
+            value={ingredientName}
+            onChange={updateIngredient}
+          ></input>
           <div>
             {matchedIngredient.map((match) => (
               //button next to div 
               <div onClick={addIngredient}>{match.name}</div>
             ))}
-            <button onClick={createIngredient} type="button">
-              Create An Ingredient
-            </button>
           </div>
           <button type="submit" >Update Pantry</button>
         </form>
