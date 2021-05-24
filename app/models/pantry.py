@@ -19,3 +19,9 @@ class Pantry(db.Model):
             "userId": self.userId,
             "ingredients": [i.to_dict() for i in self.ingredients]
         }
+
+    def to_simple_dict(self):
+        return {
+            "id": self.id,
+            "category": self.category
+        }

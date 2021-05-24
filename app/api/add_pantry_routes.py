@@ -30,26 +30,19 @@ def user_pantries():
     return {
         'user': current_user.id,
         'username': current_user.username,
-        'pantries': [pantry.to_dict() for pantry in user.pantries]
+        'all_pantries': [pantry.to_dict() for pantry in pantries]
     }
 
-
-@pantry_routes.route('/pantryIngredients')
-# @login_required
-def user_pantry_ingredients():
-    user = User.query.filter(User.id == current_user.id).first()
-    pantries = user.pantries
-    print('-----pantries', pantries)
-    # return [pantry.to_dict() for pantry in pantries]
-    return {
-        "pantry_ing": [pantry.to_dict() for pantry in pantries]
-    }
-    # for pantry in pantries:
-    #     # return (ingredients.to_dict() for ingredients in pantry.ingredients)
-    #     for ingredient in pantry.ingredients:
-    #         return {
-    #             'pantry_ingredients': ingredient.to_dict(),
-    #         }
+# @pantry_routes.route('/pantryIngredients')
+# # @login_required
+# def user_pantry_ingredients():
+#     user = User.query.filter(User.id == current_user.id).first()
+#     pantries = user.pantries
+#     print('-----pantries', pantries)
+#     # return [pantry.to_dict() for pantry in pantries]
+#     return {
+#         "pantry_ing": [pantry.to_dict() for pantry in pantries]
+#     }
 
 
 @pantry_routes.route('/<int:pantryId>', methods=['POST'])
@@ -83,7 +76,7 @@ def add_ingredients_to_pantry(pantryId):
         ingred = Ingredient.query.filter_by(name=eachIngredient).first()
         db.session.execute(f"""insert into pantry_ingredients ("ingredientsId", "pantryId")
         values ({ingred.id}, {pantry.id});""")
-            # BACK POPULATES CHECK IT OUT
+        # BACK POPULATES CHECK IT OUT
         # filteredIng = Ingredient.query.filter_by(name=eachIngredient)
         # print('llll----00000FILTERING', filteredIng)
         # pantry.ingredients.append(filteredIng)
@@ -92,5 +85,5 @@ def add_ingredients_to_pantry(pantryId):
     #     print('000000', pantry, i)
     db.session.commit()
     return {
-        "pantry": pantry.to_dict()
+        "selected_pantry": pantry.to_dict()
     }

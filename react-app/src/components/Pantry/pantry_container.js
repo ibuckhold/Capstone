@@ -77,15 +77,10 @@ export const Pantries = () => {
 const Pantry = ({ pantry }) => {
   const dispatch = useDispatch();
   const ingredients = useSelector(state => Object.values(state.ingredients));
-  const pantryIngs = useSelector(state => state.pantries?.pantries?.pantry_ing);
   const [ingredientName, setIngredientName] = useState('');
   const [matchedIngredient, setMatchedIngredient] = useState([]);
   const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    console.log('hitting thee USEFFECT');
-    dispatch(getPantryIngredients());
-  }, [dispatch])
+  const [ingsInPantry, setIngsInPantry] = useState([]);
 
   const updateIngredient = (e) => {
     const query = e.target.value.toUpperCase();
@@ -93,12 +88,6 @@ const Pantry = ({ pantry }) => {
     const matches = ingredients.filter(i => i.name.toUpperCase().includes(query));
     setMatchedIngredient(matches);
   }
-
-  // const ingredientMaker = (e) => {
-  //   const input = e.target.value;
-  //   setIngredientName(input);
-  //   addIngredient(input)
-  // }
 
   const addIngredient = (e) => {
     e.preventDefault();
@@ -108,30 +97,21 @@ const Pantry = ({ pantry }) => {
     setMatchedIngredient([]);
   }
 
-  // const createIngredient = (e) => {
-  //   e.preventDefault();
-  //   dispatch(addingIngredient(e.target.textContent));
-  //   setCart([...cart, e.target.textContent]);
-  //   console.log('addingcart', cart);
-  // }
-
   const addIngredientToPantry = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('ingredients', cart)
     formData.append('pantryId', pantry.id)
     dispatch(updatePantry(pantry.id, formData))
-    // dispatch(updatePantry(pantry.id, cart));
-    // console.log('endcart', cart);
-    console.log('endcart', formData);
-    // dispatch(getPantryIngredients());
     setIngredientName('');
     setMatchedIngredient([]);
     setCart([]);
-    // await dispatch(showPantries())
-    // await dispatch(getPantryIngredients())
   }
 
+  useEffect(async () => {
+    // fetch()
+    console.log('HITTING USEEFFECT', ingsInPantry)
+  }, [cart])
 
 
   return pantry ? (
