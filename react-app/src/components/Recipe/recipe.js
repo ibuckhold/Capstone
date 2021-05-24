@@ -8,7 +8,14 @@ export const CreateRecipe = () => {
   const [recipeUsername, setRecipeUsername] = useState('');
   const [instructions, setInstructions] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
+  // const [recipeUsername, instructions, estimatedTime] = useState([]);
   const recipes = useSelector(state => state.recipes.recipes?.reverse());
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(getAllRecipes())
+    })();
+  }, [dispatch]);
 
   const submitRecipe = async (e) => {
     e.preventDefault();
@@ -16,6 +23,7 @@ export const CreateRecipe = () => {
     setRecipeUsername('');
     setInstructions('');
     setEstimatedTime('');
+    await dispatch(getAllRecipes());
   }
 
   const updateRecipe = async (e) => {
@@ -28,11 +36,6 @@ export const CreateRecipe = () => {
     setEstimatedTime(e.target.value);
   }
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(getAllRecipes())
-    })();
-  }, [dispatch]);
 
   return (
     <div>

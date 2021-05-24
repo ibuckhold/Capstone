@@ -83,6 +83,7 @@ def add_ingredients_to_pantry(pantryId):
         ingred = Ingredient.query.filter_by(name=eachIngredient).first()
         db.session.execute(f"""insert into pantry_ingredients ("ingredientsId", "pantryId")
         values ({ingred.id}, {pantry.id});""")
+            # BACK POPULATES CHECK IT OUT
         # filteredIng = Ingredient.query.filter_by(name=eachIngredient)
         # print('llll----00000FILTERING', filteredIng)
         # pantry.ingredients.append(filteredIng)

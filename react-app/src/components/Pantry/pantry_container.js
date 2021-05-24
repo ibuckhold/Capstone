@@ -41,6 +41,7 @@ export const Pantries = () => {
       setLoaded(true);
     }
     setPantry('');
+    await dispatch(showPantries())
   }
 
   const updatePantry = (e) => {
@@ -76,15 +77,15 @@ export const Pantries = () => {
 const Pantry = ({ pantry }) => {
   const dispatch = useDispatch();
   const ingredients = useSelector(state => Object.values(state.ingredients));
+  const pantryIngs = useSelector(state => state.pantries?.pantries?.pantry_ing);
   const [ingredientName, setIngredientName] = useState('');
   const [matchedIngredient, setMatchedIngredient] = useState([]);
   const [cart, setCart] = useState([]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     await dispatch(getPantryIngredients())
-  //   })();
-  // }, [dispatch])
+  useEffect(() => {
+    console.log('hitting thee USEFFECT');
+    dispatch(getPantryIngredients());
+  }, [dispatch])
 
   const updateIngredient = (e) => {
     const query = e.target.value.toUpperCase();
@@ -114,7 +115,7 @@ const Pantry = ({ pantry }) => {
   //   console.log('addingcart', cart);
   // }
 
-  const addIngredientToPantry = (e) => {
+  const addIngredientToPantry = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('ingredients', cart)
@@ -127,8 +128,10 @@ const Pantry = ({ pantry }) => {
     setIngredientName('');
     setMatchedIngredient([]);
     setCart([]);
-
+    // await dispatch(showPantries())
+    // await dispatch(getPantryIngredients())
   }
+
 
 
   return pantry ? (
