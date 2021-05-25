@@ -44,7 +44,7 @@ export const updatePantry = (pantryId, formData) => async (dispatch) => {
   if (res.ok) {
     await dispatch(addToPantry(data));
   } else {
-    console.log('ERRRRRRRRRORRRRRRR')
+    throw res;
   }
 }
 

@@ -63,16 +63,13 @@ def add_ingredients_to_pantry(pantryId):
     # print(ingredients)
     form = IngredientsIntoPantryForm()
     ingredients_form = form.data['ingredients']
-    print('========form', ingredients_form)
     pantry = Pantry.query.filter(pantryId == Pantry.id).first()
     # ingredients = ingredients_form.split('--*--')
     ingredientsString = request.form['ingredients']
     # ingredients = literal_eval(ingredients_form)
     # ingredients = json.loads(form.data['ingredients'])
     ingredients = ingredientsString.split(',')
-    print('===========>ingredddds', ingredients)
     for eachIngredient in ingredients:
-        print('-----splittingArray--', eachIngredient)
         ingred = Ingredient.query.filter_by(name=eachIngredient).first()
         db.session.execute(f"""insert into pantry_ingredients ("ingredientsId", "pantryId")
         values ({ingred.id}, {pantry.id});""")

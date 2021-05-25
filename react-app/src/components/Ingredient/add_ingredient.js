@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getIngredients } from "../../store/ingredient";
 
 const CreateIngredient = () => {
+  const dispatch = useDispatch();
   const [ingredient, setIngredient] = useState('');
+  const allIngredients = useSelector(state => Object.values(state.ingredients).reverse());
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,16 +22,11 @@ const CreateIngredient = () => {
       body: formData,
     });
     if (res.ok) {
-      await res.json()
+      await res.json();
     }
-    setIngredient('')
+    setIngredient('');
   }
 
-  // useEffect(() => {
-  //   (async () => {
-  //     await dispatch()
-  //   })()
-  // })
 
 
   const updateIngredient = (e) => {
@@ -47,6 +50,13 @@ const CreateIngredient = () => {
             />
             <button type="submit">Create Ingredient</button>
           </form>
+        </div>
+      </div>
+      <div>
+        <div>
+          {allIngredients.map((ing) => (
+            <div>{ing.name}</div>
+          ))}
         </div>
       </div>
     </main>

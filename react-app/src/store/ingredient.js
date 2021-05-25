@@ -15,10 +15,10 @@ const getAllIngredients = (payload) => ({
 
 //THUNKS
 export const getIngredients = () => async (dispatch) => {
-  const res = await fetch('/api/ingredients')
-  const { ingredients } = await res.json()
-  await dispatch(getAllIngredients(ingredients))
-  return ingredients
+  const res = await fetch('/api/ingredients');
+  const { ingredients } = await res.json();
+  await dispatch(getAllIngredients(ingredients));
+  return ingredients;
 }
 
 
@@ -33,20 +33,20 @@ export const addingIngredient = (name) => async (dispatch) => {
     })
   });
   const data = await res.json();
-  dispatch(setIngredient(data))
+  dispatch(setIngredient(data));
   return data;
 }
 
 const initialState = {}
 
-//REDUCER 
+//REDUCER
 export default function ingredientReducer(state = initialState, action) {
   const previousState = { ...state };
   switch (action.type) {
     case SET_INGREDIENT:
       return { ...previousState, [action.payload.id]: action.payload };
     case GET_ALL_INGREDIENTS:
-      return { ...action.payload };
+      return { ...state, ...action.payload };
     default:
       return state;
   }

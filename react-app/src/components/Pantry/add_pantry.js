@@ -9,7 +9,6 @@ const CreatePantry = () => {
   const [pantry, setPantry] = useState('');
   const [loaded, setLoaded] = useState(false);
   const pantries = useSelector(state => state.pantryReducer.pantries)
-  console.log('pantries---------->', pantries)
 
   useEffect(() => {
     (async () => {

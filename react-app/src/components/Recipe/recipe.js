@@ -77,12 +77,12 @@ export const CreateRecipe = () => {
         <div>
           <h1 className='head'>Recipe Feed</h1>
           {recipes?.map((recipe) => (
-            <div>
-              <div className='eachRecipe' key={recipe.id} onClick={() => setIsModalOpen(true)}>
+            <div key={recipe.id}>
+              <div className='eachRecipe' onClick={() => setIsModalOpen(true)}>
                 <div className='recName'>{recipe.recipeName}</div>
                 <div className='estTime'>{recipe.estimatedTime}</div>
               </div>
-              <Modal
+              {/* <Modal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
               >
@@ -92,7 +92,7 @@ export const CreateRecipe = () => {
                 <div>
                   <button onClick={() => setIsModalOpen(false)}>Close</button>
                 </div>
-              </Modal>
+              </Modal> */}
             </div>
           ))}
         </div>

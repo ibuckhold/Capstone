@@ -26,7 +26,6 @@ const LoginForm = () => {
     dispatch(login({ 'email': email, "password": "password" }))
       .catch(async (res) => {
         const data = await res.json();
-        console.log(data)
       });
   }
 

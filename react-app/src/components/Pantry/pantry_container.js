@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { showPantries } from '../../store/pantry';
-// import { getIngredients } from '../../store/ingredient';
 import { addingIngredient, getIngredients } from '../../store/ingredient';
 import { updatePantry, getPantryIngredients } from '../../store/pantry';
 import './pantry.css';
@@ -92,7 +91,6 @@ const Pantry = ({ pantry }) => {
   const addIngredient = (e) => {
     e.preventDefault();
     setCart([...cart, e.target.textContent]);
-    console.log('cart', cart);
     setIngredientName('');
     setMatchedIngredient([]);
   }
@@ -130,7 +128,7 @@ const Pantry = ({ pantry }) => {
             ></input>
             <div>
               {matchedIngredient.map((match) => (
-                //button next to div 
+                //button next to div
                 <div key={match.id} className='searchRes' onClick={addIngredient}>{match.name}</div>
               ))}
             </div>
