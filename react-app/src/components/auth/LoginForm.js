@@ -20,6 +20,24 @@ const LoginForm = () => {
     }
   };
 
+  async function demoPerson(e) {
+    e.preventDefault();
+    const email = "demo@aa.io";
+    dispatch(login({ 'email': email, "password": "password" }))
+      .catch(async (res) => {
+        const data = await res.json();
+        console.log(data)
+      });
+  }
+
+  const onDemoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -62,6 +80,9 @@ const LoginForm = () => {
               />
             </div>
             <button type="submit">Login</button>
+          </form>
+          <form onSubmit={onDemoLogin}>
+            <button type="submit">Demo User</button>
           </form>
           <div className="not">
             <p>Not a Pantry Note member? <NavLink to='/sign-up'>Sign up here</NavLink></p>
