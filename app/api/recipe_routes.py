@@ -9,7 +9,7 @@ recipe_routes = Blueprint('recipe', __name__)
 @recipe_routes.route('/get')
 @login_required
 def get_recipes():
-    recipes = Recipe.query.all()
+    recipes = Recipe.query.order_by(Recipe.id.desc()).all()
 
     return {
         'user': current_user.to_dict(),
