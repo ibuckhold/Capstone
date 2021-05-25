@@ -11,7 +11,7 @@ export const CreateRecipe = () => {
   const [estimatedTime, setEstimatedTime] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [recipeUsername, instructions, estimatedTime] = useState([]);
-  const recipes = useSelector(state => state.recipes.recipes?.reverse());
+  const recipes = useSelector(state => state.recipes.recipes);
 
   useEffect(() => {
     (async () => {
