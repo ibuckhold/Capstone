@@ -30,7 +30,7 @@ def user_pantries():
     return {
         'user': current_user.id,
         'username': current_user.username,
-        'all_pantries': [pantry.to_dict() for pantry in pantries]
+        'all_pantries': {pantry.id: pantry.to_dict() for pantry in pantries}
     }
 
 # @pantry_routes.route('/pantryIngredients')

@@ -1,5 +1,6 @@
 const GET_PANTRIES = 'GET_PANTRIES';
 const ADD_TO_PANTRY = "ADD_TO_PANTRY";
+const SET_ACTIVE_PANTRY = "SET_ACTIVE_PANTRY";
 // const GET_PANTRY_ING = "GET_PANTRY_ING"
 
 const getPantries = (pantries) => ({
@@ -12,6 +13,11 @@ const addToPantry = (ingredients) => ({
   payload: ingredients
 })
 
+export const grabActivePantry = (pantry) => ({
+  type: SET_ACTIVE_PANTRY,
+  payload: pantry
+})
+
 // const getIngredients = (ingredients) => ({
 //   type: GET_PANTRY_ING,
 //   payload: ingredients
@@ -21,7 +27,7 @@ export const showPantries = () => async (dispatch) => {
   const res = await fetch('/api/pantry/ingredients');
   const data = await res.json();
   if (res.ok) {
-    await dispatch(getPantries(data));
+    dispatch(getPantries(data));
   } else {
     throw res;
   }
@@ -31,7 +37,7 @@ export const getPantryIngredients = () => async (dispatch) => {
   const res = await fetch('/api/pantry/ingredients');
   const data = await res.json();
   if (res.ok) {
-    await dispatch(getPantries(data))
+    dispatch(getPantries(data))
   }
 }
 
@@ -42,13 +48,16 @@ export const updatePantry = (pantryId, formData) => async (dispatch) => {
   })
   const data = await res.json();
   if (res.ok) {
-    await dispatch(addToPantry(data));
+    dispatch(addToPantry(data));
   } else {
     throw res;
   }
 }
 
-const initialState = {};
+const initialState = {
+  selected_pantry: null,
+  all_pantries: {}
+};
 
 export default function pantryReducer(state = initialState, action) {
   switch (action.type) {
@@ -56,9 +65,10 @@ export default function pantryReducer(state = initialState, action) {
       const newState = { ...state, ...action.payload };
       return newState;
     case ADD_TO_PANTRY:
+      state.all_pantries[action.payload.selected_pantry.id].ingredients = action.payload.selected_pantry.ingredients
       return { ...state, ...action.payload };
-    // case GET_PANTRY_ING:
-    //   return { ...state, ...action.payload };
+    case SET_ACTIVE_PANTRY:
+      return { ...state, selected_pantry: action.payload };
     default:
       return state
   }

@@ -3,27 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { showPantries } from '../../store/pantry';
 import { addingIngredient, getIngredients } from '../../store/ingredient';
-import { updatePantry, getPantryIngredients } from '../../store/pantry';
+import { updatePantry, getPantryIngredients, grabActivePantry } from '../../store/pantry';
 import './pantry.css';
 
 
 export const Pantries = () => {
   const dispatch = useDispatch();
-  const [activePantry, setActivePantry] = useState(false);
   const [pantry, setPantry] = useState('');
   const [loaded, setLoaded] = useState(false);
-  const pantriesArr = useSelector(state => Object.values(state.pantries));
-  const pantries = pantriesArr.map((pantry) => {
-    return pantry
-  })
-
+  const pantries = useSelector(state => Object.values(state.pantries.all_pantries));
 
   useEffect(() => {
-    (async () => {
-      await dispatch(showPantries())
-      await dispatch(getIngredients())
-      await dispatch(getPantryIngredients())
-    })();
+    dispatch(showPantries())
+    dispatch(getIngredients())
   }, [dispatch])
 
   const handleSubmit = async (e) => {
@@ -62,24 +54,26 @@ export const Pantries = () => {
         </form>
       </div>
       <div className='myPantries'>
-        {pantries[0]?.map((pantry, index) => (
-          <div key={pantry.id} className='pantryLink' onClick={() => setActivePantry(pantries[0][index])}>
+        {pantries.map((pantry, index) => (
+          <div key={pantry.id} className='pantryLink' onClick={() => dispatch(grabActivePantry(pantries[index]))}>
             {pantry.category}
           </div>
         ))}
       </div>
-      <Pantry pantry={activePantry} />
+      <Pantry />
     </div>
   )
 }
 
-const Pantry = ({ pantry }) => {
+const Pantry = () => {
   const dispatch = useDispatch();
-  const ingredients = useSelector(state => Object.values(state.ingredients));
+  const ingredientsObj = useSelector(state => state.ingredients, Object.deepEq);
+  const ingredients = Object.values(ingredientsObj);
   const [ingredientName, setIngredientName] = useState('');
   const [matchedIngredient, setMatchedIngredient] = useState([]);
   const [cart, setCart] = useState([]);
   const [ingsInPantry, setIngsInPantry] = useState([]);
+  const pantry = useSelector(state => state.pantries.selected_pantry);
 
   const updateIngredient = (e) => {
     const query = e.target.value.toUpperCase();
@@ -98,21 +92,21 @@ const Pantry = ({ pantry }) => {
   const addIngredientToPantry = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('ingredients', cart)
-    formData.append('pantryId', pantry.id)
-    dispatch(updatePantry(pantry.id, formData))
+    formData.append('ingredients', cart);
+    formData.append('pantryId', pantry.id);
+    dispatch(updatePantry(pantry.id, formData));
+    setIngsInPantry((oldPantryIng) => [...oldPantryIng, ...cart]);
     setIngredientName('');
     setMatchedIngredient([]);
     setCart([]);
   }
 
   useEffect(async () => {
-    // fetch()
-    console.log('HITTING USEEFFECT', ingsInPantry)
-  }, [cart])
+    pantry && setIngsInPantry(pantry.ingredients);
+  }, [pantry])
 
 
-  return pantry ? (
+  return (pantry && (
     <div>
       <div className='navlink'>
         <NavLink className='text' to='/ingredient/add'>Create An Ingredient</NavLink>
@@ -136,7 +130,7 @@ const Pantry = ({ pantry }) => {
           </form>
           <div className='chosenPantries'>Ingredients in {pantry.category}
             <div>
-              {pantry.ingredients?.map((ingredient) => (
+              {ingsInPantry && ingsInPantry.map((ingredient) => (
                 <div className='eachIng' key={ingredient.id}>{ingredient.name}</div>
               ))}
             </div>
@@ -150,5 +144,5 @@ const Pantry = ({ pantry }) => {
         ))}
       </div>
     </div>
-  ) : <div className='noActive'>No Active Pantry</div>
+  )) || <div className='noActive'>No Active Pantry</div>
 }
