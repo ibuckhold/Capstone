@@ -1,7 +1,7 @@
 const GET_PANTRIES = 'GET_PANTRIES';
 const ADD_TO_PANTRY = "ADD_TO_PANTRY";
 const SET_ACTIVE_PANTRY = "SET_ACTIVE_PANTRY";
-// const GET_PANTRY_ING = "GET_PANTRY_ING"
+const DELETE_PANTRY = "DELETE_PANTRY";
 
 const getPantries = (pantries) => ({
   type: GET_PANTRIES,
@@ -18,6 +18,11 @@ export const grabActivePantry = (pantry) => ({
   payload: pantry
 })
 
+export const deleteAPantry = (pantry) => ({
+  type: DELETE_PANTRY,
+  payload: pantry
+})
+
 // const getIngredients = (ingredients) => ({
 //   type: GET_PANTRY_ING,
 //   payload: ingredients
@@ -31,6 +36,12 @@ export const showPantries = () => async (dispatch) => {
   } else {
     throw res;
   }
+}
+
+export const deletePantry = (pantryId) => async (dispatch) => {
+  const res = await fetch(`api/pantry/delete/${pantryId}`, { method: 'DELETE' });
+  dispatch(deleteAPantry());
+  return null;
 }
 
 export const getPantryIngredients = () => async (dispatch) => {
@@ -69,6 +80,8 @@ export default function pantryReducer(state = initialState, action) {
       return { ...state, ...action.payload };
     case SET_ACTIVE_PANTRY:
       return { ...state, selected_pantry: action.payload };
+    case DELETE_PANTRY:
+      return state
     default:
       return state
   }

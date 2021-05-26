@@ -27,12 +27,9 @@ const CreateIngredient = () => {
     setIngredient('');
   }
 
-
-
   const updateIngredient = (e) => {
     setIngredient(e.target.value);
   }
-
 
   return (
     <main>
@@ -55,7 +52,7 @@ const CreateIngredient = () => {
       <div>
         <div>
           {allIngredients.map((ing) => (
-            <div className='eachRecipe'>{ing.name}</div>
+            <div className='eachRecipe' key={ing.id}>{ing.name}</div>
           ))}
         </div>
       </div>

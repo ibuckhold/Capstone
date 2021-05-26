@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { showPantries } from '../../store/pantry';
-import { addingIngredient, getIngredients } from '../../store/ingredient';
-import { updatePantry, getPantryIngredients, grabActivePantry } from '../../store/pantry';
+import { getIngredients } from '../../store/ingredient';
+import { updatePantry, grabActivePantry, deletePantry } from '../../store/pantry';
 import './pantry.css';
 
 
@@ -35,6 +35,11 @@ export const Pantries = () => {
     await dispatch(showPantries())
   }
 
+  const deleteTheSelectedPantry = async (pantryId) => {
+    await dispatch(deletePantry(pantryId));
+    dispatch(showPantries())
+  }
+
   const updatePantry = (e) => {
     setPantry(e.target.value);
   }
@@ -55,8 +60,9 @@ export const Pantries = () => {
       </div>
       <div className='myPantries'>
         {pantries.map((pantry, index) => (
-          <div key={pantry.id} className='pantryLink' onClick={() => dispatch(grabActivePantry(pantries[index]))}>
-            {pantry.category}
+          <div>
+            <div key={pantry.id} className='pantryLink' onClick={() => dispatch(grabActivePantry(pantries[index]))}>{pantry.category}</div>
+            <button onClick={() => deleteTheSelectedPantry(pantry.id)}> x </button>
           </div>
         ))}
       </div>
