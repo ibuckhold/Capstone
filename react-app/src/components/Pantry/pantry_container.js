@@ -60,8 +60,8 @@ export const Pantries = () => {
       </div>
       <div className='myPantries'>
         {pantries.map((pantry, index) => (
-          <div>
-            <div key={pantry.id} className='pantryLink' onClick={() => dispatch(grabActivePantry(pantries[index]))}>{pantry.category}</div>
+          <div key={pantry.id}>
+            <div className='pantryLink' onClick={() => dispatch(grabActivePantry(pantries[index]))}>{pantry.category}</div>
             <button onClick={() => deleteTheSelectedPantry(pantry.id)}> x </button>
           </div>
         ))}
@@ -111,13 +111,12 @@ const Pantry = () => {
     pantry && setIngsInPantry(pantry.ingredients);
   }, [pantry])
 
-
   return (pantry && (
     <div>
-      <div className='navlink'>
-        <NavLink className='text' to='/ingredient/add'>Create An Ingredient</NavLink>
-      </div>
       <div className='selectorArea'>
+        <button className='createIngBtn'>
+          <NavLink to='/ingredient/add'>Create An Ingredient</NavLink>
+        </button>
         <div className='pantryArea'>
           <form onSubmit={addIngredientToPantry}>
             <input
@@ -128,11 +127,10 @@ const Pantry = () => {
             ></input>
             <div>
               {matchedIngredient.map((match) => (
-                //button next to div
                 <div key={match.id} className='searchRes' onClick={addIngredient}>{match.name}</div>
               ))}
             </div>
-            <button className='update' type="submit" >Update Pantry</button>
+            <button className='updatePantryButton' type="submit" >Update Pantry</button>
           </form>
           <div className='chosenPantries'>Ingredients in {pantry.category}
             <div>

@@ -15,7 +15,20 @@
   font-size: 1.1rem;
   color: whitesmoke;
   font-weight: 200;
+}
 
+button {
+  color: whitesmoke;
+  background-color: #763343;
+  cursor: pointer;
+  padding: .15rem;
+  border-radius: 5px;
+}
+
+
+.createIngBtn {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .myPantries {
@@ -79,7 +92,7 @@
   /* border: 2px solid whitesmoke; */
 }
 .text {
-  color: black;
+  color: whitesmoke;
   margin-left: 1.5rem;
 }
 

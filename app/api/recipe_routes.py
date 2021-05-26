@@ -28,6 +28,15 @@ def get_my_recipes():
     }
 
 
+@recipe_routes.route('/<int:recipeId>', methods=['DELETE'])
+@login_required
+def delete_recipe(recipeId):
+    recipe = Recipe.query.get(recipeId)
+    db.session.delete(recipe)
+    db.session.commit()
+    return {}
+
+
 @recipe_routes.route('', methods=['POST'])
 @login_required
 def add_recipe():

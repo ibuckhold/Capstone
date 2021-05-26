@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getMyRecipes } from '../../store/recipe';
+import { getMyRecipes, deleteRecipe } from '../../store/recipe';
 import './recipe.css';
 
 export const SavedRecipes = () => {
   const dispatch = useDispatch();
   const myRecipes = useSelector(state => state.recipes.myRecipes?.reverse());
+
+  const deleteTheRecipe = async (recipeId) => {
+    await dispatch(deleteRecipe(recipeId));
+    dispatch(getMyRecipes());
+  }
 
   useEffect(() => {
     (async () => {
@@ -21,9 +26,12 @@ export const SavedRecipes = () => {
       <div className='feed'>
         <div>
           {myRecipes?.map((recipe) => (
-            <div className='eachRecipe' key={recipe.id}>
-              <div className='recName'>{recipe.recipeName}</div>
-              <div className='estTime'>{recipe.estimatedTime}</div>
+            <div>
+              <div className='eachRecipe' key={recipe.id}>
+                <div className='recName'>{recipe.recipeName}</div>
+                <div className='estTime'>{recipe.estimatedTime}</div>
+              </div>
+              <button onClick={() => deleteTheRecipe(recipe.id)}> x </button>
             </div>
           ))}
         </div>
