@@ -25,6 +25,7 @@ const CreateIngredient = () => {
       await res.json();
     }
     setIngredient('');
+    dispatch(getIngredients());
   }
 
   const updateIngredient = (e) => {
