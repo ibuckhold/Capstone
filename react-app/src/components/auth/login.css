@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-/* body{
-
-} */
 
 main{
   display: flex;
@@ -26,6 +23,13 @@ main{
 
 .formStuff {
   margin: 1rem;
+  display: inline-block;
+}
+
+.formInput {
+  display: inline-block;
+  border: 10px solid black;
+  border-radius: 15px;
 }
 
 /* head style */

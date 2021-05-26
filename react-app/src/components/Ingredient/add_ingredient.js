@@ -55,7 +55,7 @@ const CreateIngredient = () => {
       <div>
         <div>
           {allIngredients.map((ing) => (
-            <div>{ing.name}</div>
+            <div className='eachRecipe'>{ing.name}</div>
           ))}
         </div>
       </div>

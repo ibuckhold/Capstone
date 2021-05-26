@@ -63,6 +63,7 @@ const LoginForm = () => {
             <div>
               <label className='formStuff' htmlFor="email">Email</label>
               <input
+                className='formInput'
                 name="email"
                 type="text"
                 value={email}
@@ -72,6 +73,7 @@ const LoginForm = () => {
             <div>
               <label className='formStuff' htmlFor="password">Password</label>
               <input
+                className='formInput'
                 name="password"
                 type="password"
                 value={password}

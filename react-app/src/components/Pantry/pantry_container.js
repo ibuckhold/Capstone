@@ -131,7 +131,7 @@ const Pantry = () => {
           <div className='chosenPantries'>Ingredients in {pantry.category}
             <div>
               {ingsInPantry && ingsInPantry.map((ingredient) => (
-                <div className='eachIng' key={ingredient.id}>{ingredient.name}</div>
+                <div className='eachIng eachRecipe' key={ingredient.id}>{ingredient.name}</div>
               ))}
             </div>
           </div>
