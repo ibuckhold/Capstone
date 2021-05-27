@@ -27,6 +27,15 @@ def get_my_recipes():
     }
 
 
+@recipe_routes.route('/each/<int:recipeId>')
+@login_required
+def get_specific_recipe(recipeId):
+    recipe = Recipe.query.get(recipeId)
+    return {
+        'specificRecipe': recipe.to_dict()
+    }
+
+
 @recipe_routes.route('/<int:recipeId>', methods=['DELETE'])
 @login_required
 def delete_recipe(recipeId):

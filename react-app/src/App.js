@@ -14,6 +14,7 @@ import CreateIngredient from "./components/Ingredient/add_ingredient";
 import { CreateRecipe } from "./components/Recipe/recipe"
 import { Pantries } from './components/Pantry/pantry_container';
 import { SavedRecipes } from './components/Recipe/savedRecipes';
+import { SpecificRecipe } from './components/Recipe/eachRecipe';
 // import { showPantries } from './store/pantry';
 // import { getIngredients } from './store/ingredient';
 
@@ -66,6 +67,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/recipes' exact={true}>
           <SavedRecipes />
+        </ProtectedRoute>
+        <ProtectedRoute path='/recipe/:recipeId' exact={true}>
+          <SpecificRecipe />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

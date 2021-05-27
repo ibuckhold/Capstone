@@ -2,6 +2,7 @@ const SET_RECIPE = "SET_RECIPE";
 const GET_RECIPES = "GET_RECIPES";
 const GETMY_RECIPES = "GETMY_RECIPES";
 const DELETE_A_RECIPE = "DELETE_A_RECIPE";
+const GET_SPECIFIC_RECIPE = "GET_SPECIFIC_RECIPE";
 
 const setRecipe = (recipe) => ({
   type: SET_RECIPE,
@@ -13,6 +14,11 @@ const getRecipes = (recipes) => ({
   payload: recipes
 })
 
+const getSpecificRecipe = (recipe) => ({
+  type: GET_SPECIFIC_RECIPE,
+  payload: recipe
+})
+
 const getSavedRecipes = (myRecipes) => ({
   type: GETMY_RECIPES,
   payload: myRecipes
@@ -22,6 +28,14 @@ const deleteARecipe = (recipe) => ({
   type: DELETE_A_RECIPE,
   payload: recipe
 })
+
+export const getSelectedRecipe = (recipeId) => async (dispatch) => {
+  const res = await fetch(`/api/recipe/each/${recipeId}`);
+  const data = await res.json();
+  if (res.ok) {
+    await dispatch(getSpecificRecipe(data));
+  }
+}
 
 export const getAllRecipes = () => async (dispatch) => {
   const res = await fetch('api/recipe/get');
@@ -73,6 +87,8 @@ export default function recipeReducer(state = initialState, action) {
       return { ...state, ...action.payload }
     case DELETE_A_RECIPE:
       return state
+    case GET_SPECIFIC_RECIPE:
+      return { ...action.payload }
     default:
       return state;
   }

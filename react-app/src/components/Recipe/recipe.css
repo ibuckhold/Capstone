@@ -25,6 +25,15 @@
   border-radius: 10px;
 }
 
+.selectedRecipe {
+  background-color: #763343;
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: 10px;
+  max-width: 50%;
+  min-width: 49%;
+}
+
 .recName {
   color: whitesmoke;
   font-weight: 700;

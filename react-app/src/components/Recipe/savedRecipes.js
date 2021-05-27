@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getMyRecipes, deleteRecipe } from '../../store/recipe';
 import './recipe.css';
 
@@ -26,13 +27,13 @@ export const SavedRecipes = () => {
       <div className='feed'>
         <div>
           {myRecipes?.map((recipe) => (
-            <div>
+            <NavLink to={`/recipe/${recipe.id}`}>
               <div className='eachRecipe' key={recipe.id}>
                 <div className='recName'>{recipe.recipeName}</div>
                 <div className='estTime'>{recipe.estimatedTime}</div>
               </div>
               <button onClick={() => deleteTheRecipe(recipe.id)}> x </button>
-            </div>
+            </NavLink>
           ))}
         </div>
       </div>

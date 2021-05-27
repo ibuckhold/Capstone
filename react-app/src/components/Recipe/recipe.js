@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { createRecipe, getAllRecipes } from '../../store/recipe';
-import Modal from 'react-modal';
+import { NavLink } from 'react-router-dom'
+// import Modal from 'react-modal';
 import './recipe.css';
 
 export const CreateRecipe = () => {
@@ -9,7 +10,7 @@ export const CreateRecipe = () => {
   const [recipeUsername, setRecipeUsername] = useState('');
   const [instructions, setInstructions] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [recipeUsername, instructions, estimatedTime] = useState([]);
   const recipes = useSelector(state => state.recipes.recipes);
 
@@ -78,10 +79,13 @@ export const CreateRecipe = () => {
           <h1 className='head'>Recipe Feed</h1>
           {recipes?.map((recipe) => (
             <div key={recipe.id}>
-              <div className='eachRecipe' onClick={() => setIsModalOpen(true)}>
-                <div className='recName'>{recipe.recipeName}</div>
-                <div className='estTime'>{recipe.estimatedTime}</div>
-              </div>
+              <NavLink to={`/recipe/${recipe.id}`}>
+                <div className='eachRecipe'>
+                  <div className='recName'>{recipe.recipeName}</div>
+                  <div className='estTime'>{recipe.estimatedTime}</div>
+                </div>
+              </NavLink>
+              {/* <div className='eachRecipe' onClick={() => setIsModalOpen(true)}> */}
               {/* <Modal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
