@@ -21,7 +21,6 @@ def get_recipes():
 @login_required
 def get_my_recipes():
     recipes = Recipe.query.filter_by(userId=current_user.id).all()
-
     return {
         'user': current_user.to_dict(),
         'myRecipes': [recipe.to_dict() for recipe in recipes]

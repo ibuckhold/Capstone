@@ -35,9 +35,8 @@ def user_pantries():
 
 
 @pantry_routes.route('/delete/<int:pantryId>', methods=['DELETE'])
-# @login_required
+@login_required
 def delete_pantry(pantryId):
-    # pantry = Pantry.query.filter(pantryId == Pantry.id).first()
     pantry = Pantry.query.get(pantryId)
     db.session.delete(pantry)
     db.session.commit()
@@ -45,7 +44,7 @@ def delete_pantry(pantryId):
 
 
 @pantry_routes.route('/<int:pantryId>', methods=['POST'])
-# @login_required
+@login_required
 def add_ingredients_to_pantry(pantryId):
     form = IngredientsIntoPantryForm()
     ingredients_form = form.data['ingredients']
@@ -53,6 +52,7 @@ def add_ingredients_to_pantry(pantryId):
     ingredientsString = request.form['ingredients']
     ingredients = ingredientsString.split(',')
     for eachIngredient in ingredients:
+        # need validation for if ingredient was already added to pantry
         ingred = Ingredient.query.filter_by(name=eachIngredient).first()
         db.session.execute(f"""insert into pantry_ingredients ("ingredientsId", "pantryId")
         values ({ingred.id}, {pantry.id});""")

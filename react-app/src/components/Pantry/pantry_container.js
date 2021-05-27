@@ -90,13 +90,21 @@ const Pantry = () => {
 
   const addIngredient = (e) => {
     e.preventDefault();
-    setCart([...cart, e.target.textContent]);
+    if (cart.indexOf(e.target.textContent) === -1) {
+      setCart([...cart, e.target.textContent]);
+    }
     setIngredientName('');
     setMatchedIngredient([]);
   }
 
   const addIngredientToPantry = async (e) => {
     e.preventDefault();
+    let validatedCart = [];
+    cart.forEach(el => {
+      if (!ingsInPantry.includes(el)) {
+
+      }
+    });
     const formData = new FormData();
     formData.append('ingredients', cart);
     formData.append('pantryId', pantry.id);
@@ -135,7 +143,7 @@ const Pantry = () => {
           <div className='chosenPantries'>Ingredients in {pantry.category}
             <div>
               {ingsInPantry && ingsInPantry.map((ingredient) => (
-                <div className='eachIng eachRecipe' key={ingredient.id}>{ingredient.name}</div>
+                <div key={ingredient.id} className='eachIng eachRecipe'>{ingredient.name}</div>
               ))}
             </div>
           </div>
@@ -143,8 +151,8 @@ const Pantry = () => {
       </div>
       <div className='cartIngredients'>
         <h1 className='cartLink'>Cart</h1>
-        {cart?.map((item) => (
-          <div key={item} className='eachItem'>{item}</div>
+        {cart?.map((item, index) => (
+          <div key={index} className='eachItem'>{item}</div>
         ))}
       </div>
     </div>
