@@ -99,12 +99,6 @@ const Pantry = () => {
 
   const addIngredientToPantry = async (e) => {
     e.preventDefault();
-    let validatedCart = [];
-    cart.forEach(el => {
-      if (!ingsInPantry.includes(el)) {
-
-      }
-    });
     const formData = new FormData();
     formData.append('ingredients', cart);
     formData.append('pantryId', pantry.id);
