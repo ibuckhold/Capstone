@@ -85,18 +85,6 @@ export const CreateRecipe = () => {
                   <div className='estTime'>{recipe.estimatedTime}</div>
                 </div>
               </NavLink>
-              {/* <div className='eachRecipe' onClick={() => setIsModalOpen(true)}> */}
-              {/* <Modal
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-              >
-                <div className='recName'>{recipe.recipeName}</div>
-                <div className='estTime'>{recipe.estimatedTime}</div>
-                <div className='instructions'>{recipe.instructions}</div>
-                <div>
-                  <button onClick={() => setIsModalOpen(false)}>Close</button>
-                </div>
-              </Modal> */}
             </div>
           ))}
         </div>
