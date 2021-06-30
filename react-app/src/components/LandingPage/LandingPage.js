@@ -4,7 +4,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <h1>HI GRACIE!!!</h1>
+      <h1>Welcome to Pantry Note, a web-application for organizing all of your ingredients and recipes! </h1>
     </>
   )
 }
