@@ -17,6 +17,7 @@ import { SavedRecipes } from './components/Recipe/savedRecipes';
 import { SpecificRecipe } from './components/Recipe/eachRecipe';
 // import { showPantries } from './store/pantry';
 // import { getIngredients } from './store/ingredient';
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -50,7 +51,8 @@ function App() {
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          {/* <h1>My Home Page</h1> */}
+          <LandingPage />
         </ProtectedRoute>
         <ProtectedRoute path='/ingredient/add' exact={true}>
           <CreateIngredient />
