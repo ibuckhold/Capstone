@@ -37,3 +37,16 @@
     border-top: 1px solid #9cbcbd;
     border-bottom: 1px solid #9cbcbd;
 }
+
+.navWrap .nav ul li .icon {
+    color: #9cbcbd;
+    display: block;
+}
+
+.navWrap .nav ul li .icon .fas {
+    width: 2rem;
+}
+
+.navWrap .nav ul li .icon .fas :hover {
+    background-color: whitesmoke;
+}
