@@ -9,47 +9,40 @@ const NavBar = () => {
 
   if (!user) {
     return (
-      <ul className="nav">
-        <div>
-          <NavLink to="/login" exact={true} className="icon" activeClassName="active">
-            Login
+      <div className='navWrap'>
+        <ul className="nav">
+          <div>
+            <NavLink to="/login" exact={true} className="icon" activeClassName="active">
+              Login
             </NavLink>
-        </div>
-        <div>
-          <NavLink to="/sign-up" exact={true} className="icon" activeClassName="active">
-            Sign Up
+          </div>
+          <div>
+            <NavLink to="/sign-up" exact={true} className="icon" activeClassName="active">
+              Sign Up
             </NavLink>
-        </div>
-      </ul>
+          </div>
+        </ul>
+      </div>
     )
   }
   else return (
-    <nav>
-      <ul className="nav">
-        <div>
-          <NavLink to="/home" exact={true} className="icon fas fa-home" activeClassName="active">
-            Home
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/pantries" exact={true} className="icon fas fa-door-closed" activeClassName="active">
-            Pantry
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/ingredient/add' exact={true} className="icon fas fa-carrot" activeClassName="active">
-            Ingredients
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">
-            Recipe
-          </NavLink>
-        </div>
-        <div>
-          <LogoutButton className="icon" />
-        </div>
-      </ul>
+    <nav className='navWrap'>
+      <div className="nav">
+        <h2>Pantry Note</h2>
+        <ul>
+          <li><NavLink to="/home" exact={true} className="icon fas fa-home" activeClassName="active">Home</NavLink></li>
+          <li><NavLink to="/pantries" exact={true} className="icon fas fa-door-closed" activeClassName="active">Pantry</NavLink></li>
+          <li><NavLink to='/ingredient/add' exact={true} className="icon fas fa-carrot" activeClassName="active">Ingredients</NavLink></li>
+          <div>
+            <NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">
+              Recipe
+            </NavLink>
+          </div>
+          <div>
+            <LogoutButton className="icon" />
+          </div>
+        </ul>
+      </div>
     </nav>
   );
 }
