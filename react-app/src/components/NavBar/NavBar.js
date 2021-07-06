@@ -33,14 +33,8 @@ const NavBar = () => {
           <li><NavLink to="/home" exact={true} className="icon fas fa-home" activeClassName="active">Home</NavLink></li>
           <li><NavLink to="/pantries" exact={true} className="icon fas fa-door-closed" activeClassName="active">Pantry</NavLink></li>
           <li><NavLink to='/ingredient/add' exact={true} className="icon fas fa-carrot" activeClassName="active">Ingredients</NavLink></li>
-          <div>
-            <NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">
-              Recipe
-            </NavLink>
-          </div>
-          <div>
-            <LogoutButton className="icon" />
-          </div>
+          <li><NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">Recipe</NavLink></li>
+          <li><LogoutButton className="icon" /></li>
         </ul>
       </div>
     </nav>
