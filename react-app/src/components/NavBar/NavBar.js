@@ -36,6 +36,10 @@ const NavBar = () => {
           <li><NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">Recipe</NavLink></li>
           <li><LogoutButton className="icon" /></li>
         </ul>
+        <div className='socialMedia'>
+          <a><i className="fab fa-linkedin"></i></a>
+          <a><i className="fab fa-github-square"></i></a>
+        </div>
       </div>
     </nav>
   );

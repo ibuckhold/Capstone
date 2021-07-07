@@ -41,12 +41,29 @@
 .navWrap .nav ul li .icon {
     color: #9cbcbd;
     display: block;
-}
-
-.navWrap .nav ul li .icon .fas {
     width: 2rem;
 }
 
-.navWrap .nav ul li .icon .fas :hover {
-    background-color: whitesmoke;
+.navWrap .nav ul li:hover {
+    /* background-color: #36343b; */
+    background-color: #292929;
+}
+
+.navWrap .nav .socialMedia {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.navWrap .nav .socialMedia a {
+    display: block;
+    width: 3rem;
+    height: 4rem;
+    line-height: 3rem;
+    text-align: center;
+    margin: 0 1rem;
+    color: #9cbcbd;
+    font-size: 2rem;
 }
