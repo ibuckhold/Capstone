@@ -8,7 +8,6 @@ export const SpecificRecipe = () => {
   const dispatch = useDispatch();
   const recipe = useSelector(state => state.recipes.specificRecipe)
   let { recipeId } = useParams();
-  console.log(recipe, '----------------')
 
   useEffect(() => {
     dispatch(getSelectedRecipe(recipeId))
