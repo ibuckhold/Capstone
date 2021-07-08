@@ -6,29 +6,21 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components//User/UsersList";
-// import User from "./components/User/User";
-// import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 import CreateIngredient from "./components/Ingredient/add_ingredient";
-// import CreatePantry from "./components/Pantry/add_pantry";
 import { CreateRecipe } from "./components/Recipe/recipe"
 import { Pantries } from './components/Pantry/pantry_container';
 import { SavedRecipes } from './components/Recipe/savedRecipes';
 import { SpecificRecipe } from './components/Recipe/eachRecipe';
-// import { showPantries } from './store/pantry';
-// import { getIngredients } from './store/ingredient';
 import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
-  // const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      // await dispatch(showPantries());
-      // await dispatch(getIngredients());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -62,7 +54,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/pantries' exact={true}>
           <Pantries />
-          {/* <CreatePantry /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/recipes' exact={true}>
           <SavedRecipes />
