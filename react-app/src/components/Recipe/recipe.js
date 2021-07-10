@@ -20,24 +20,24 @@ export const CreateRecipe = () => {
     })();
   }, [dispatch]);
 
-  const submitRecipe = async (e) => {
-    e.preventDefault();
-    await dispatch(createRecipe(recipeUsername, instructions, estimatedTime));
-    setRecipeUsername('');
-    setInstructions('');
-    setEstimatedTime('');
-    await dispatch(getAllRecipes());
-  }
+  // const submitRecipe = async (e) => {
+  //   e.preventDefault();
+  //   await dispatch(createRecipe(recipeUsername, instructions, estimatedTime));
+  //   setRecipeUsername('');
+  //   setInstructions('');
+  //   setEstimatedTime('');
+  //   await dispatch(getAllRecipes());
+  // }
 
-  const updateRecipe = async (e) => {
-    setRecipeUsername(e.target.value);
-  }
-  const updateInstructions = async (e) => {
-    setInstructions(e.target.value);
-  }
-  const updateEstimatedTime = async (e) => {
-    setEstimatedTime(e.target.value);
-  }
+  // const updateRecipe = async (e) => {
+  //   setRecipeUsername(e.target.value);
+  // }
+  // const updateInstructions = async (e) => {
+  //   setInstructions(e.target.value);
+  // }
+  // const updateEstimatedTime = async (e) => {
+  //   setEstimatedTime(e.target.value);
+  // }
 
 
   return (

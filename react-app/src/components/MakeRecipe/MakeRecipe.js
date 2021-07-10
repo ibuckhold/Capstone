@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 
 export const MakeRecipe = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [recipeUsername, setRecipeUsername] = useState('');
   const [instructions, setInstructions] = useState('');
@@ -10,10 +13,11 @@ export const MakeRecipe = () => {
   const submitRecipe = async (e) => {
     e.preventDefault();
     await dispatch(createRecipe(recipeUsername, instructions, estimatedTime));
-    setRecipeUsername('');
-    setInstructions('');
-    setEstimatedTime('');
-    await dispatch(getAllRecipes());
+    history.push('/home');
+    // setRecipeUsername('');
+    // setInstructions('');
+    // setEstimatedTime('');
+    // await dispatch(getAllRecipes());
   }
 
   const updateRecipe = async (e) => {
