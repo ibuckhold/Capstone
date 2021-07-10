@@ -34,7 +34,7 @@ const NavBar = () => {
           <li><NavLink to="/pantries" exact={true} className="icon fas fa-door-closed" activeClassName="active">Pantry</NavLink></li>
           <li><NavLink to='/ingredient/add' exact={true} className="icon fas fa-carrot" activeClassName="active">Ingredients</NavLink></li>
           <li><NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">Recipe</NavLink></li>
-          <li><NavLink to='/recipe/creator' exact={true} className="" activeClassName="">Create a Recipe</NavLink></li>
+          <li><NavLink to='/create/recipe' exact={true} className="" activeClassName="">Create a Recipe</NavLink></li>
           {/* <li><LogoutButton className="icon logout" /></li> */}
         </ul>
         <div className='socialMedia'>

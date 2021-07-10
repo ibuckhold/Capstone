@@ -62,7 +62,7 @@ function App() {
         <ProtectedRoute path='/recipe/:recipeId' exact={true}>
           <SpecificRecipe />
         </ProtectedRoute>
-        <ProtectedRoute path='/recipe/creator' exact={true}>
+        <ProtectedRoute path='/create/recipe' exact={true}>
           <MakeRecipe />
         </ProtectedRoute>
       </Switch>
