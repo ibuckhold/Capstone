@@ -13,6 +13,7 @@ import { Pantries } from './components/Pantry/pantry_container';
 import { SavedRecipes } from './components/Recipe/savedRecipes';
 import { SpecificRecipe } from './components/Recipe/eachRecipe';
 import LandingPage from "./components/LandingPage/LandingPage";
+import { MakeRecipe } from "./components/MakeRecipe/MakeRecipe";
 
 function App() {
   const dispatch = useDispatch()
@@ -60,6 +61,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/recipe/:recipeId' exact={true}>
           <SpecificRecipe />
+        </ProtectedRoute>
+        <ProtectedRoute path='/recipe/creator' exact={true}>
+          <MakeRecipe />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
