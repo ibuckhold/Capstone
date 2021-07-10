@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createRecipe } from '../../store/recipe';
+import './makeRecipe.css';
 
 export const MakeRecipe = () => {
   const history = useHistory();
