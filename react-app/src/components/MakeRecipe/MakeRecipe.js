@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { createRecipe, getAllRecipes } from '../../store/recipe';
-import { NavLink } from 'react-router-dom'
-// import Modal from 'react-modal';
-import './recipe.css';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-export const CreateRecipe = () => {
+export const MakeRecipe = () => {
   const dispatch = useDispatch();
   const [recipeUsername, setRecipeUsername] = useState('');
   const [instructions, setInstructions] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [recipeUsername, instructions, estimatedTime] = useState([]);
-  const recipes = useSelector(state => state.recipes.recipes);
-
-  useEffect(() => {
-    (async () => {
-      await dispatch(getAllRecipes())
-    })();
-  }, [dispatch]);
 
   const submitRecipe = async (e) => {
     e.preventDefault();
@@ -39,10 +26,9 @@ export const CreateRecipe = () => {
     setEstimatedTime(e.target.value);
   }
 
-
   return (
-    <div>
-      {/* <div className='recipeForm form'>
+    <>
+      <div className='recipeForm form'>
         <form onSubmit={submitRecipe}>
           <div>
             <label>Recipe Name</label>
@@ -73,23 +59,7 @@ export const CreateRecipe = () => {
           </div>
           <button type="submit">Create Recipe</button>
         </form>
-      </div> */}
-      <div className='feed'>
-        <div>
-          <h1 className='head'>Recipe Feed</h1>
-          {recipes?.map((recipe) => (
-            <div key={recipe.id}>
-              <NavLink to={`/recipe/${recipe.id}`}>
-                <div className='eachRecipe'>
-                  <div className='recName'>{recipe.recipeName}</div>
-                  <div className='estTime'>{recipe.estimatedTime}</div>
-                </div>
-              </NavLink>
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
+    </>
   )
-
 }
