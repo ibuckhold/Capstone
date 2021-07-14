@@ -3,8 +3,8 @@
     color: #9cbcbd;
     text-decoration: none;
     font-size: 1.4em;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .navWrap {
@@ -19,7 +19,7 @@
     border-bottom: 4px solid #9cbcbd;
     margin-top: 1rem; */
     position: fixed;
-    width: 16rem;
+    width: 20rem;
     height: 100%;
     padding: 3rem 0;
     background-color: #313131;
