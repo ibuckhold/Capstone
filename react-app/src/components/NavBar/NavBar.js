@@ -34,8 +34,8 @@ const NavBar = () => {
           <li onClick={() => history.push('/home')}><div onClick={() => history.push('/home')} className="icon fas fa-home" activeClassName="active">Home</div></li>
           <li onClick={() => history.push('/pantries')}><div onClick={() => history.push('/pantries')} className="icon fas fa-door-closed" activeClassName="active">Pantry</div></li>
           <li onClick={() => history.push('/ingredient/add')}><div onClick={() => history.push('/ingredient/add')} className="icon fas fa-carrot" activeClassName="active">Ingredients</div></li>
-          <li onClick={() => history.push('/recipes')}><div onClick={() => history.push('/recipes')} className="icon fas fa-scroll" activeClassName="active">Saved-Recipes</div></li>
-          <li onClick={() => history.push('/create/recipe')}><div onClick={() => history.push('/create/recipe')} className="icon fas fa-plus-circle" activeClassName="">Create-Recipe</div></li>
+          <li onClick={() => history.push('/recipes')}><div onClick={() => history.push('/recipes')} className="icon fas fa-scroll" activeClassName="active">SavedRecipes</div></li>
+          <li onClick={() => history.push('/create/recipe')}><div onClick={() => history.push('/create/recipe')} className="icon fas fa-plus-circle" activeClassName="">CreateRecipe</div></li>
           {/* <li><LogoutButton className="icon logout" /></li> */}
         </ul>
         <div className='socialMedia'>
