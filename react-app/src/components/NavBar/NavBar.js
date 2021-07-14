@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
+  const history = useHistory();
 
   if (!user) {
     return (
@@ -30,11 +31,11 @@ const NavBar = () => {
       <div className="nav">
         <h2>Pantry Note</h2>
         <ul>
-          <li><NavLink to="/home" exact={true} className="icon fas fa-home" activeClassName="active">Home</NavLink></li>
-          <li><NavLink to="/pantries" exact={true} className="icon fas fa-door-closed" activeClassName="active">Pantry</NavLink></li>
-          <li><NavLink to='/ingredient/add' exact={true} className="icon fas fa-carrot" activeClassName="active">Ingredients</NavLink></li>
-          <li><NavLink to='/recipes' exact={true} className="icon fas fa-scroll" activeClassName="active">Recipe</NavLink></li>
-          <li><NavLink to='/create/recipe' exact={true} className="" activeClassName="">Create a Recipe</NavLink></li>
+          <li onClick={() => history.push('/home')}><div onClick={() => history.push('/home')} className="icon fas fa-home" activeClassName="active">Home</div></li>
+          <li onClick={() => history.push('/pantries')}><div onClick={() => history.push('/pantries')} className="icon fas fa-door-closed" activeClassName="active">Pantry</div></li>
+          <li onClick={() => history.push('/ingredient/add')}><div onClick={() => history.push('/ingredient/add')} className="icon fas fa-carrot" activeClassName="active">Ingredients</div></li>
+          <li onClick={() => history.push('/recipes')}><div onClick={() => history.push('/recipes')} className="icon fas fa-scroll" activeClassName="active">Recipe</div></li>
+          <li onClick={() => history.push('/create/recipe')}><div onClick={() => history.push('/create/recipe')} className="icon" activeClassName="">Create a Recipe</div></li>
           {/* <li><LogoutButton className="icon logout" /></li> */}
         </ul>
         <div className='socialMedia'>
